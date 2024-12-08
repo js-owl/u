@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./s/index.scss";
 import { Link, Routes, Route } from "react-router-dom";
 import { MainPageAsync } from "./p/MainPage/MainPage.async";
 import { AboutPageAsync } from "./p/AboutPage/AboutPage.async";
@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app dark">
       <Link to={"/"}>Main</Link>
       <Link to={"/about"}>About</Link>
       <Suspense fallback={<div>Loading...</div>}>
