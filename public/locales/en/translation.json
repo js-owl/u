@@ -2,5 +2,7 @@
   "main page": "main page",
   "not found page": "not found page",
   "lang": "english",
-  "translate": "translate"
+  "translate": "translate",
+  "error": "something goes wrong",
+  "update_page": "update page"
 }
