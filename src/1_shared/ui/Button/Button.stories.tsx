@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import React from "react";
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 // import { ThemeDecorator } from "1_shared/config/storybook/ThemeDecorator/ThemeDecorator";
@@ -27,11 +27,11 @@ Clear.args = {
   theme: ButtonTheme.CLEAR,
 };
 
-// export const Outline = Template.bind({});
-// Outline.args = {
-//   children: "Text",
-//   theme: ButtonTheme.OUTLINE,
-// };
+export const Outline = Template.bind({});
+Outline.args = {
+  children: "Text",
+  theme: ButtonTheme.OUTLINE,
+};
 
 // export const OutlineDark = Template.bind({});
 // OutlineDark.args = {

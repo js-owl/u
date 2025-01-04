@@ -9,4 +9,8 @@ module.exports = {
   core: {
     builder: "webpack5",
   },
+  managerWebpack: (config, options) => {
+    options.cache.set = () => Promise.resolve();
+    return config;
+  },
 };
