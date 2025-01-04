@@ -8,7 +8,7 @@ import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
 interface ThemeSwitherProps {
   className?: string;
 }
-export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
+export const ThemeSwitcher = ({ className }: ThemeSwitherProps) => {
   const { theme, toggleTheme } = useTheme();
   return (
     <Button
