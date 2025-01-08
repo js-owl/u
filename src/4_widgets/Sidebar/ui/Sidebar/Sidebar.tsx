@@ -1,12 +1,15 @@
-import { classNames } from "1_shared/libs/classNames/classNames";
-import cls from "./Sidebar.module.scss";
 import { useState } from "react";
-import { ThemeSwitcher } from "4_widgets/ThemeSwitcher";
-import { LangSwithcher } from "4_widgets/LangSwithcher";
+import { useTranslation } from "react-i18next";
+import { classNames } from "1_shared/libs/classNames/classNames";
+import MaintIcon from "1_shared/assets/icons/main.svg";
+import AboutIcon from "1_shared/assets/icons/about.svg";
+import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
 import { Button, ButtonTheme, ButtonSize } from "1_shared/ui/Button/Button";
 import { AppLink, AppLinkTheme } from "1_shared/ui/AppLink/AppLink";
-import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
-import { useTranslation } from "react-i18next";
+import { ThemeSwitcher } from "4_widgets/ThemeSwitcher";
+import { LangSwithcher } from "4_widgets/LangSwithcher";
+import cls from "./Sidebar.module.scss";
+
 interface SidebarProps {
   className?: string;
 }
@@ -39,14 +42,16 @@ export const Sidebar = ({ className }: SidebarProps) => {
           to={RoutePath.main}
           className={cls.item}
         >
-          {t("main")}
+          <MaintIcon className={cls.icon} />
+          <span className={cls.link}>{t("main")}</span>
         </AppLink>
         <AppLink
           theme={AppLinkTheme.RED}
           to={RoutePath.about}
           className={cls.item}
         >
-          {t("about")}
+          <AboutIcon className={cls.icon} />
+          <span className={cls.link}>{t("about")}</span>
         </AppLink>
       </div>
       <div className={cls.switchers}>
