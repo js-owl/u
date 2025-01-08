@@ -4,9 +4,10 @@ import { classNames } from "1_shared/libs/classNames/classNames";
 import cls from "./LangSwithcher.module.scss";
 interface LangSwithcherProps {
   className?: string;
+  short?: boolean;
 }
 
-export const LangSwithcher = ({ className }: LangSwithcherProps) => {
+export const LangSwithcher = ({ className, short }: LangSwithcherProps) => {
   const { t, i18n } = useTranslation();
   const toggle = () => {
     i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru");
@@ -17,7 +18,7 @@ export const LangSwithcher = ({ className }: LangSwithcherProps) => {
       theme={ButtonTheme.CLEAR}
       onClick={toggle}
     >
-      {t("lang")}
+      {t(short ? "short_lang" : "lang")}
     </Button>
   );
 };
