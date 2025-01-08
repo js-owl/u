@@ -1,9 +1,11 @@
 {
   "main page": "main page",
   "not found page": "not found page",
+  "update_page": "update page",
   "lang": "english",
   "short_lang": "en",
   "translate": "translate",
   "error": "something goes wrong",
-  "update_page": "update page"
+  "main": "main",
+  "about": "about"
 }
