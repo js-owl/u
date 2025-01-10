@@ -1,4 +1,3 @@
-import "./s/index.scss";
 import { Suspense } from "react";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Navbar } from "4_widgets/Navbar";
