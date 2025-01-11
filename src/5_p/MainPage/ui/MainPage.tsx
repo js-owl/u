@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { BugButton } from "7_app/providers/ErrorBoundary";
+import { Counter } from "2_entities/Counter";
 
 const MainPage = () => {
   const { t } = useTranslation();
   return (
     <div>
-      <BugButton />
       {t("main page")}
+      <Counter />
     </div>
   );
 };
