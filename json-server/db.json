@@ -1,0 +1,13 @@
+{
+  "posts": [
+    { "id": "1", "title": "a", "views": 100 },
+    { "id": "2", "title": "b", "views": 200 },
+    { "id": "3", "title": "c", "views": 300 }
+  ],
+  "comments": [
+    { "id": "1", "text": "ca", "postId": "1" },
+    { "id": "2", "text": "cb", "postId": "1" }
+  ],
+  "users": [{ "id": "1", "username": "admin", "password": "123" }],
+  "profile": { "name": "typicode" }
+}
