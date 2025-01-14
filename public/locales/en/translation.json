@@ -8,5 +8,7 @@
   "error": "something goes wrong",
   "main": "main",
   "about": "about",
-  "enter": "enter"
+  "enter": "enter",
+  "enter name": "enter name",
+  "enter password": "enter password"
 }
