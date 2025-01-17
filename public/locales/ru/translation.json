@@ -10,5 +10,6 @@
   "about": "о нас",
   "enter": "войти",
   "enter name": "введите имя",
-  "enter password": "введите пароль"
+  "enter password": "введите пароль",
+  "auth form": "форма авторизации"
 }

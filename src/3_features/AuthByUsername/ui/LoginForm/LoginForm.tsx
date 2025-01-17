@@ -1,8 +1,9 @@
 import { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { classNames } from "1_shared/libs/classNames/classNames";
 import { useTranslation } from "react-i18next";
+import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
+import { Text, TextTheme } from "1_shared/ui/Text/Text";
 import { Input } from "1_shared/ui/Input/Input";
 import cls from "./LoginForm.module.scss";
 import { loginActions } from "../../model/slice/loginSlice";
@@ -34,7 +35,8 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
   }, [dispatch, username, password]);
   return (
     <div className={classNames(cls.LoginForm, {}[className])}>
-      {error && <div>{error}</div>}
+      <Text title={t("auth form")} />
+      {error && <Text text={error} theme={TextTheme.ERROR} />}
       <Input
         autofocus
         type="text"

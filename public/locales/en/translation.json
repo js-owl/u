@@ -10,5 +10,6 @@
   "about": "about",
   "enter": "enter",
   "enter name": "enter name",
-  "enter password": "enter password"
+  "enter password": "enter password",
+  "auth form": "auth form"
 }
