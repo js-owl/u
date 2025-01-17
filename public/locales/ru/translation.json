@@ -11,5 +11,7 @@
   "enter": "войти",
   "enter name": "введите имя",
   "enter password": "введите пароль",
-  "auth form": "форма авторизации"
+  "auth form": "форма авторизации",
+  "wrong username/password": "неправильное имя/пароль",
+  "logout": "выйти"
 }

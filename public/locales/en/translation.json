@@ -11,5 +11,7 @@
   "enter": "enter",
   "enter name": "enter name",
   "enter password": "enter password",
-  "auth form": "auth form"
+  "auth form": "auth form",
+  "wrong username/password": "wrong username/password",
+  "logout": "logout"
 }
