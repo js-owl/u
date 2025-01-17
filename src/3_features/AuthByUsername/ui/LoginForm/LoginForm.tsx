@@ -7,6 +7,7 @@ import { Input } from "1_shared/ui/Input/Input";
 import cls from "./LoginForm.module.scss";
 import { loginActions } from "../../model/slice/loginSlice";
 import { getLoginState } from "../../model/selectors/getLoginState/getLoginState";
+import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
 
 interface LoginFormProps {
   className?: string;
@@ -14,7 +15,7 @@ interface LoginFormProps {
 export const LoginForm = memo(({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { username, password } = useSelector(getLoginState);
+  const { username, password, error, isLoading } = useSelector(getLoginState);
 
   const onChangeUsername = useCallback(
     (value: string) => {
@@ -28,9 +29,12 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     },
     [dispatch]
   );
-  const onLoginClick = useCallback(() => {}, []);
+  const onLoginClick = useCallback(() => {
+    dispatch(loginByUsername({ username, password }));
+  }, [dispatch, username, password]);
   return (
     <div className={classNames(cls.LoginForm, {}[className])}>
+      {error && <div>{error}</div>}
       <Input
         autofocus
         type="text"
@@ -50,6 +54,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
         theme={ButtonTheme.OUTLINE}
         className={cls.loginBtn}
         onClick={onLoginClick}
+        disabled={isLoading}
       >
         {t("enter")}
       </Button>
