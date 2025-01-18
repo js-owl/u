@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import i18n from "1_shared/config/i18n/i18n";
 import { USER_LOCALSTORAGE_KEY } from "1_shared/const/localStorage";
 import { User, userActions } from "2_entities/User";
 
@@ -27,6 +26,6 @@ export const loginByUsername = createAsyncThunk<
     return response.data;
   } catch (e) {
     console.warn({ e });
-    return thunkAPI.rejectWithValue(i18n.t("wrong username/password"));
+    return thunkAPI.rejectWithValue("error");
   }
 });
