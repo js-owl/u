@@ -1,13 +1,17 @@
-import { memo, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { memo, useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
 import { Text, TextTheme } from "1_shared/ui/Text/Text";
 import { Input } from "1_shared/ui/Input/Input";
+import { getLoginUsername } from "3_features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername";
+import { getLoginPassword } from "3_features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword";
+import { getLoginIsLoading } from "3_features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading";
+import { getLoginError } from "3_features/AuthByUsername/model/selectors/getLoginError/getLoginError";
+import { ReduxStoreWithManager } from "7_app/providers/StoreProvider/config/StateSchema";
 import cls from "./LoginForm.module.scss";
-import { loginActions } from "../../model/slice/loginSlice";
-import { getLoginState } from "../../model/selectors/getLoginState/getLoginState";
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import { loginByUsername } from "../../model/services/loginByUsername/loginByUsername";
 
 export interface LoginFormProps {
@@ -16,7 +20,19 @@ export interface LoginFormProps {
 const LoginForm = memo(({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { username, password, error, isLoading } = useSelector(getLoginState);
+  const store = useStore() as ReduxStoreWithManager;
+
+  const username = useSelector(getLoginUsername);
+  const password = useSelector(getLoginPassword);
+  const isLoading = useSelector(getLoginIsLoading);
+  const error = useSelector(getLoginError);
+
+  useEffect(() => {
+    store.reducerManager.add("loginForm", loginReducer);
+    return () => {
+      store.reducerManager.remove("loginForm");
+    };
+  }, []);
 
   const onChangeUsername = useCallback(
     (value: string) => {
