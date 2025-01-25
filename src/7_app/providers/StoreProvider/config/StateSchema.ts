@@ -3,11 +3,11 @@ import { UserSchema } from "2_entities/User";
 import { LoginSchema } from "3_features/AuthByUsername";
 import {
   AnyAction,
-  CombinedState,
   EnhancedStore,
   Reducer,
   ReducersMapObject,
 } from "@reduxjs/toolkit";
+import { CombinedState } from "redux";
 
 export interface StateSchema {
   counter: CounterSchema;
