@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import {
@@ -9,6 +9,7 @@ import {
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
 import { Text, TextTheme } from "1_shared/ui/Text/Text";
 import { Input } from "1_shared/ui/Input/Input";
+import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
 import { getLoginUsername } from "3_features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername";
 import { getLoginPassword } from "3_features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword";
 import { getLoginIsLoading } from "3_features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading";
@@ -23,10 +24,11 @@ const initialReducers: ReducersList = {
 
 export interface LoginFormProps {
   className?: string;
+  onSuccess: () => void;
 }
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const username = useSelector(getLoginUsername);
   const password = useSelector(getLoginPassword);
@@ -45,9 +47,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     },
     [dispatch]
   );
-  const onLoginClick = useCallback(() => {
-    dispatch(loginByUsername({ username, password }));
-  }, [dispatch, username, password]);
+  const onLoginClick = useCallback(async () => {
+    const result = await dispatch(loginByUsername({ username, password }));
+    if (result.meta.requestStatus === "fulfilled") {
+      onSuccess();
+    }
+    console.log({ result });
+  }, [onSuccess, dispatch, username, password]);
 
   return (
     <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
