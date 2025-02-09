@@ -9,5 +9,14 @@
     { "id": "2", "text": "cb", "postId": "1" }
   ],
   "users": [{ "id": "1", "username": "admin", "password": "123" }],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Alex",
+    "lastname": "K",
+    "age": 45,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Moscow",
+    "username": "admin",
+    "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+  }
 }

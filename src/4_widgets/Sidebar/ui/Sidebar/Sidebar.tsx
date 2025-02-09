@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
-import MaintIcon from "1_shared/assets/icons/main.svg";
-import AboutIcon from "1_shared/assets/icons/about.svg";
-import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
 import { Button, ButtonTheme, ButtonSize } from "1_shared/ui/Button/Button";
-import { AppLink, AppLinkTheme } from "1_shared/ui/AppLink/AppLink";
 import { ThemeSwitcher } from "4_widgets/ThemeSwitcher";
 import { LangSwithcher } from "4_widgets/LangSwithcher";
+import { SidebarItemsList } from "4_widgets/Sidebar/model/items";
 import cls from "./Sidebar.module.scss";
+import { SidebarItem } from "./SidebarItem/SidebarItem";
 
 interface SidebarProps {
   className?: string;
@@ -37,22 +35,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
         {collapsed ? ">" : "<"}
       </Button>
       <div className={cls.items}>
-        <AppLink
-          theme={AppLinkTheme.SECONDARY}
-          to={RoutePath.main}
-          className={cls.item}
-        >
-          <MaintIcon className={cls.icon} />
-          <span className={cls.link}>{t("main")}</span>
-        </AppLink>
-        <AppLink
-          theme={AppLinkTheme.RED}
-          to={RoutePath.about}
-          className={cls.item}
-        >
-          <AboutIcon className={cls.icon} />
-          <span className={cls.link}>{t("about")}</span>
-        </AppLink>
+        {SidebarItemsList.map((item) => (
+          <SidebarItem item={item} collapsed={collapsed} key={item.path} />
+        ))}
       </div>
       <div className={cls.switchers}>
         <ThemeSwitcher />

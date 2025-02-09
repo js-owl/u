@@ -1,5 +1,6 @@
 {
   "main page": "main page",
+  "profile page": "profile page",
   "not found page": "not found page",
   "update_page": "update page",
   "lang": "english",
@@ -8,6 +9,7 @@
   "error": "something goes wrong",
   "main": "main",
   "about": "about",
+  "profile": "profile",
   "enter": "enter",
   "enter name": "enter name",
   "enter password": "enter password",
