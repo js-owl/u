@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button, ButtonTheme, ButtonSize } from "1_shared/ui/Button/Button";
@@ -13,7 +13,7 @@ interface SidebarProps {
 }
 export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { t } = useTranslation();
+
   const onToggle = () => {
     setCollapsed((prev) => !prev);
   };
