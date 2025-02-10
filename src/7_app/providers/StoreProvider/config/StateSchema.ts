@@ -1,5 +1,6 @@
 import { CounterSchema } from "2_entities/Counter";
 import { UserSchema } from "2_entities/User";
+import { ProfileShema } from "2_entities/Profile";
 import { LoginSchema } from "3_features/AuthByUsername";
 import {
   AnyAction,
@@ -15,6 +16,7 @@ export interface StateSchema {
 
   // async
   loginForm?: LoginSchema;
+  profile?: ProfileShema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
