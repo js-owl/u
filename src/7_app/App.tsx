@@ -7,6 +7,7 @@ import { useTheme } from "7_app/providers/ThemeProvider";
 import { AppRouter } from "./providers/router";
 import { userActions } from "2_entities/User";
 
+console.log("|-App");
 const App = () => {
   const { theme, toggleTheme } = useTheme();
   const dispatch = useDispatch();

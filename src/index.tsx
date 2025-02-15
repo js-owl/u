@@ -7,6 +7,7 @@ import { StoreProvider } from "7_app/providers/StoreProvider";
 import App from "./7_app/App";
 import "7_app/s/index.scss";
 
+console.log("|-index");
 render(
   <BrowserRouter>
     <StoreProvider>
