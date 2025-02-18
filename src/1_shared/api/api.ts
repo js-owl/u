@@ -4,5 +4,5 @@ import axios from "axios";
 console.log("|-api", { __API__ });
 export const $api = axios.create({
   baseURL: __API__,
-  headers: { authorization: localStorage.getItem(USER_LOCALSTORAGE_KEY) },
+  headers: { authorization: localStorage.getItem(USER_LOCALSTORAGE_KEY) || "" },
 });

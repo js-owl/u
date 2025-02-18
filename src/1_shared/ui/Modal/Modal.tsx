@@ -1,6 +1,7 @@
 /* eslint-disable object-curly-newline */
-import { classNames } from "1_shared/libs/classNames/classNames";
+import { classNames, Mods } from "1_shared/libs/classNames/classNames";
 import React, {
+  MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
@@ -29,7 +30,7 @@ export const Modal = ({
 }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
     if (isOpen) {
@@ -66,7 +67,7 @@ export const Modal = ({
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen, onKeyDown]);
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.opened]: isOpen,
     [cls.isClosing]: isClosing,
   };

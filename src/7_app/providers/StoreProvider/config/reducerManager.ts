@@ -9,6 +9,7 @@ import { ReducerManager, StateSchema, StateSchemaKey } from "./StateSchema";
 export function createReducerManager(
   initialReducers: ReducersMapObject<StateSchema>
 ): ReducerManager {
+  console.log("|-createReducerManager", { initialReducers });
   const reducers = { ...initialReducers };
   let combinedReducer = combineReducers(reducers);
   let keysToRemove: Array<StateSchemaKey> = [];
