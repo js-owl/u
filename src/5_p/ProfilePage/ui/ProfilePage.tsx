@@ -14,6 +14,7 @@ import {
   ProfileCard,
   profileReducer,
 } from "2_entities/Profile";
+import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
 const reducers: ReducersList = { profile: profileReducer };
 
@@ -31,6 +32,7 @@ const ProfilePage = () => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div>
+        <ProfilePageHeader />
         <ProfileCard data={data} isLoading={isLoading} error={error} />
       </div>
     </DynamicModuleLoader>
