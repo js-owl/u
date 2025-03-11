@@ -4,7 +4,11 @@ import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
 import { Text } from "1_shared/ui/Text/Text";
-import { getProfileReadonly, profileActions } from "2_entities/Profile";
+import {
+  getProfileReadonly,
+  profileActions,
+  updateProfileData,
+} from "2_entities/Profile";
 import cls from "./ProfilePageHeader.module.scss";
 
 interface ProfilePageHeaderProps {
@@ -19,6 +23,10 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
   }, [dispatch]);
   const onCancelEdit = useCallback(() => {
     dispatch(profileActions.cancelEdit());
+  }, [dispatch]);
+  const onSave = useCallback(() => {
+    console.log("ProfilePageHeader - onSave()");
+    dispatch(updateProfileData());
   }, [dispatch]);
 
   return (
@@ -37,10 +45,17 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
           {" "}
           <Button
             className={cls.editBtn}
-            theme={ButtonTheme.OUTLINE}
+            theme={ButtonTheme.OUTLINE_RED}
             onClick={onCancelEdit}
           >
             {t("cancel")}
+          </Button>
+          <Button
+            className={cls.saveBtn}
+            theme={ButtonTheme.OUTLINE}
+            onClick={onSave}
+          >
+            {t("save")}
           </Button>
         </>
       )}
