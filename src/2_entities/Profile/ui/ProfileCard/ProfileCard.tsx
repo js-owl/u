@@ -3,11 +3,10 @@ import { classNames, Mods } from "1_shared/libs/classNames/classNames";
 import { Text, TextAlign, TextTheme } from "1_shared/ui/Text/Text";
 import { Input } from "1_shared/ui/Input/Input";
 import { Loader } from "1_shared/ui/Loader/Loader";
-import { Profile } from "2_entities/Profile/model/types/profile";
-import cls from "./ProfileCard.module.scss";
 import { Avatar } from "1_shared/ui/Avatar/Avatar";
-import { Currency } from "1_shared/const/common";
-import { Select } from "1_shared/ui/Select/Select";
+import { Profile } from "2_entities/Profile/model/types/profile";
+import { Currency, CurrencySelect } from "2_entities/Currency";
+import cls from "./ProfileCard.module.scss";
 
 interface ProfileCardProps {
   className?: string;
@@ -21,6 +20,7 @@ interface ProfileCardProps {
   onChangeCity?: (value: string) => void;
   onChangeUsername?: (value: string) => void;
   onChangeAvatar?: (value: string) => void;
+  onChangeCurrency?: (currency: Currency) => void;
 }
 export const ProfileCard = (props: ProfileCardProps) => {
   const {
@@ -35,6 +35,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
     onChangeCity,
     onChangeUsername,
     onChangeAvatar,
+    onChangeCurrency,
   } = props;
   const { t } = useTranslation("profile");
 
@@ -117,12 +118,11 @@ export const ProfileCard = (props: ProfileCardProps) => {
           onChange={onChangeAvatar}
           readonly={readonly}
         ></Input>
-        <Select
-          label={t("currency")}
-          options={[
-            { value: Currency.RUB, content: Currency.RUB },
-            { value: Currency.EUR, content: Currency.EUR },
-          ]}
+        <CurrencySelect
+          className={cls.input}
+          value={data?.currency}
+          onChange={onChangeCurrency}
+          readonly={readonly}
         />
       </div>
     </div>
