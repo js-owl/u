@@ -19,6 +19,7 @@ import {
 } from "2_entities/Profile";
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 import { Currency } from "2_entities/Currency";
+import { Country } from "2_entities/Country";
 
 const reducers: ReducersList = { profile: profileReducer };
 
@@ -81,6 +82,12 @@ const ProfilePage = () => {
     },
     [dispatch]
   );
+  const onChangeCountry = useCallback(
+    (country: Country) => {
+      dispatch(profileActions.updateProfileData({ country }));
+    },
+    [dispatch]
+  );
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -98,6 +105,7 @@ const ProfilePage = () => {
           onChangeUsername={onChangeUsername}
           onChangeAvatar={onChangeAvatar}
           onChangeCurrency={onChangeCurrency}
+          onChangeCountry={onChangeCountry}
         />
       </div>
     </DynamicModuleLoader>
