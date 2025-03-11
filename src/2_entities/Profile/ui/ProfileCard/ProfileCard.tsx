@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { classNames } from "1_shared/libs/classNames/classNames";
+import { classNames, Mods } from "1_shared/libs/classNames/classNames";
 import { Text, TextAlign, TextTheme } from "1_shared/ui/Text/Text";
 import { Input } from "1_shared/ui/Input/Input";
 import { Loader } from "1_shared/ui/Loader/Loader";
 import { Profile } from "2_entities/Profile/model/types/profile";
 import cls from "./ProfileCard.module.scss";
+import { Avatar } from "1_shared/ui/Avatar/Avatar";
 
 interface ProfileCardProps {
   className?: string;
@@ -16,6 +17,8 @@ interface ProfileCardProps {
   onChangeLastName?: (value: string) => void;
   onChangeAge?: (value: string) => void;
   onChangeCity?: (value: string) => void;
+  onChangeUsername?: (value: string) => void;
+  onChangeAvatar?: (value: string) => void;
 }
 export const ProfileCard = (props: ProfileCardProps) => {
   const {
@@ -28,6 +31,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
     onChangeLastName,
     onChangeAge,
     onChangeCity,
+    onChangeUsername,
+    onChangeAvatar,
   } = props;
   const { t } = useTranslation("profile");
 
@@ -56,26 +61,35 @@ export const ProfileCard = (props: ProfileCardProps) => {
     );
   }
 
+  const mods: Mods = {
+    [cls.editing]: !readonly,
+  };
+
   return (
-    <div className={classNames(cls.ProfileCard, {}, [className])}>
+    <div className={classNames(cls.ProfileCard, mods, [className])}>
       <div className={cls.data}>
+        {data?.avatar && (
+          <div className={cls.avatarWrapper}>
+            <Avatar src={data?.avatar} />{" "}
+          </div>
+        )}
         <Input
           value={data?.first}
-          placeholder={t("your name")}
+          placeholder={t("name")}
           className={cls.input}
           onChange={onChangeFirstName}
           readonly={readonly}
         ></Input>
         <Input
           value={data?.lastname}
-          placeholder={t("your lastname")}
+          placeholder={t("lastname")}
           className={cls.input}
           onChange={onChangeLastName}
           readonly={readonly}
         ></Input>
         <Input
           value={data?.age}
-          placeholder={t("your age")}
+          placeholder={t("age")}
           className={cls.input}
           onChange={onChangeAge}
           readonly={readonly}
@@ -85,6 +99,20 @@ export const ProfileCard = (props: ProfileCardProps) => {
           placeholder={t("city")}
           className={cls.input}
           onChange={onChangeCity}
+          readonly={readonly}
+        ></Input>
+        <Input
+          value={data?.username}
+          placeholder={t("username")}
+          className={cls.input}
+          onChange={onChangeUsername}
+          readonly={readonly}
+        ></Input>
+        <Input
+          value={data?.avatar}
+          placeholder={t("avatar")}
+          className={cls.input}
+          onChange={onChangeAvatar}
           readonly={readonly}
         ></Input>
       </div>
