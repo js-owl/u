@@ -1,6 +1,9 @@
 {
   "profile": "profile",
   "edit": "edit",
+  "error": "error",
   "error occur": "error occur",
+  "name and lastname are needed": "name and lastname are needed",
+  "server error": "server error",
   "try to reload": "try to reload"
 }
