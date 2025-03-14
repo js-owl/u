@@ -26,7 +26,11 @@ import { Text, TextTheme } from "1_shared/ui/Text/Text";
 
 const reducers: ReducersList = { profile: profileReducer };
 
-const ProfilePage = () => {
+interface ProfilePageProps {
+  className?: string;
+}
+
+const ProfilePage = ({ className }: ProfilePageProps) => {
   const { t } = useTranslation("profile");
   const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
@@ -46,7 +50,9 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchProfileData());
+    if (__PROJECT__ !== "storybook") {
+      dispatch(fetchProfileData());
+    }
   }, [dispatch]);
 
   const onChangeFirstName = useCallback(
