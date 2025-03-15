@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
+import { ArticleDetails } from "2_entities/Article";
 import cls from "./ArticleDetailsPage.module.scss";
 
 interface ArticleDetailsPageProps {
@@ -11,7 +12,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
   return (
     <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-      article details
+      <ArticleDetails />
     </div>
   );
 };
