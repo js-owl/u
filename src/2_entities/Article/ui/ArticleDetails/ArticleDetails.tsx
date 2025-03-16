@@ -48,15 +48,27 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     switch (block.type) {
       case ArticleBlockType.CODE:
         return (
-          <ArticleCodeBlockComponent className={cls.block} block={block} />
+          <ArticleCodeBlockComponent
+            key={block.id}
+            className={cls.block}
+            block={block}
+          />
         );
       case ArticleBlockType.IMAGE:
         return (
-          <ArticleImageBlockComponent className={cls.block} block={block} />
+          <ArticleImageBlockComponent
+            key={block.id}
+            className={cls.block}
+            block={block}
+          />
         );
       case ArticleBlockType.TEXT:
         return (
-          <ArticleTextBlockComponent className={cls.block} block={block} />
+          <ArticleTextBlockComponent
+            key={block.id}
+            className={cls.block}
+            block={block}
+          />
         );
       default:
         return null;
@@ -64,7 +76,9 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchArticleById(id));
+    if (__PROJECT__ !== "storybook") {
+      dispatch(fetchArticleById(id));
+    }
   }, [dispatch, id]);
 
   let content;
