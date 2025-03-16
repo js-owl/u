@@ -1,5 +1,6 @@
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 import EyeIcon from "1_shared/assets/icons/eye-20-20.svg";
 import CalendarIcon from "1_shared/assets/icons/calendar-20-20.svg";
 import { classNames } from "1_shared/libs/classNames/classNames";
@@ -8,18 +9,24 @@ import {
   ReducersList,
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
+import { Text, TextAlign, TextSize } from "1_shared/ui/Text/Text";
+import { Skeleton } from "1_shared/ui/Skeleton/Skeleton";
+import { Avatar } from "1_shared/ui/Avatar/Avatar";
+import { Icon } from "1_shared/ui/Icon/Icon";
+
 import { fetchArticleById } from "2_entities/Article/model/services/fetchArticleById/fetchArticleById";
+import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
+
 import cls from "./ArticleDetails.module.scss";
+import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
+import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
+import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
-import { Text, TextAlign, TextSize } from "1_shared/ui/Text/Text";
-import { Skeleton } from "1_shared/ui/Skeleton/Skeleton";
-import { Avatar } from "1_shared/ui/Avatar/Avatar";
-import { Icon } from "1_shared/ui/Icon/Icon";
 
 interface ArticleDetailsProps {
   className?: string;
@@ -36,6 +43,21 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   // const isLoading = true;
   const isLoading = useSelector(getArticleDetailsIsLoading);
   const error = useSelector(getArticleDetailsError);
+
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    switch (block.type) {
+      case ArticleBlockType.CODE:
+        return <ArticleCodeBlockComponent className={cls.block} />;
+      case ArticleBlockType.IMAGE:
+        return <ArticleImageBlockComponent className={cls.block} />;
+      case ArticleBlockType.TEXT:
+        return (
+          <ArticleTextBlockComponent className={cls.block} block={block} />
+        );
+      default:
+        return null;
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(fetchArticleById(id));
@@ -80,6 +102,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
           <Icon className={cls.icon} Svg={CalendarIcon} />
           <Text text={article?.createdAt} />
         </div>
+        {article?.blocks.map(renderBlock)}
       </>
     );
   }
