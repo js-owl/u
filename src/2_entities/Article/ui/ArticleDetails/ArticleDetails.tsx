@@ -51,7 +51,9 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
           <ArticleCodeBlockComponent className={cls.block} block={block} />
         );
       case ArticleBlockType.IMAGE:
-        return <ArticleImageBlockComponent className={cls.block} />;
+        return (
+          <ArticleImageBlockComponent className={cls.block} block={block} />
+        );
       case ArticleBlockType.TEXT:
         return (
           <ArticleTextBlockComponent className={cls.block} block={block} />
