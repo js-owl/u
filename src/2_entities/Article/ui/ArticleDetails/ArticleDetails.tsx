@@ -1,5 +1,7 @@
 import { memo, useEffect } from "react";
 import { useSelector } from "react-redux";
+import EyeIcon from "1_shared/assets/icons/eye-20-20.svg";
+import CalendarIcon from "1_shared/assets/icons/calendar-20-20.svg";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import {
   DynamicModuleLoader,
@@ -14,8 +16,10 @@ import {
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
-import { Text, TextAlign } from "1_shared/ui/Text/Text";
+import { Text, TextAlign, TextSize } from "1_shared/ui/Text/Text";
 import { Skeleton } from "1_shared/ui/Skeleton/Skeleton";
+import { Avatar } from "1_shared/ui/Avatar/Avatar";
+import { Icon } from "1_shared/ui/Icon/Icon";
 
 interface ArticleDetailsProps {
   className?: string;
@@ -29,8 +33,8 @@ const reducers: ReducersList = {
 export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   const dispatch = useAppDispatch();
   const article = useSelector(getArticleDetailsData);
-  const isLoading = true;
-  // const isLoading = useSelector(getArticleDetailsIsLoading);
+  // const isLoading = true;
+  const isLoading = useSelector(getArticleDetailsIsLoading);
   const error = useSelector(getArticleDetailsError);
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
 
   if (isLoading) {
     content = (
-      <div>
+      <>
         <Skeleton
           className={cls.avatar}
           width={200}
@@ -52,12 +56,32 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         <Skeleton className={cls.skeleton} width={600} height={24} />
         <Skeleton className={cls.skeleton} width={"100%"} height={200} />
         <Skeleton className={cls.skeleton} width={"100%"} height={200} />
-      </div>
+      </>
     );
   } else if (error) {
     content = <Text title="error" align={TextAlign.CENTER} />;
   } else {
-    content = <div>ArticleDetails</div>;
+    content = (
+      <>
+        <div className={cls.avatarWrapper}>
+          <Avatar size={200} src={article?.img} className={cls.avatar} />
+        </div>
+        <Text
+          className={cls.title}
+          title={article?.title}
+          text={article?.subtitle}
+          size={TextSize.L}
+        />
+        <div className={cls.articleInfo}>
+          <Icon className={cls.icon} Svg={EyeIcon} />
+          <Text text={String(article?.views)} />
+        </div>
+        <div className={cls.articleInfo}>
+          <Icon className={cls.icon} Svg={CalendarIcon} />
+          <Text text={article?.createdAt} />
+        </div>
+      </>
+    );
   }
 
   return (
