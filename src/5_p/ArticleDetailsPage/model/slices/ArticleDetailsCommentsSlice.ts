@@ -1,7 +1,12 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import {
+  createEntityAdapter,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { Comment } from "2_entities/Comment";
 import { StateSchema } from "7_app/providers/StoreProvider";
 import { ArticleDetailsCommentsSchema } from "../types/ArticleDetailsCommentsSchema";
+import { fetchCommentsByArticleId } from "../services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 
 const commentsAdapter = createEntityAdapter<Comment>({
   selectId: (comment) => comment.id,
@@ -15,32 +20,29 @@ const articleDetailsCommentsSlice = createSlice({
   name: "articleDetailsCommentsSlice",
   initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>({
     isLoading: false,
-    ids: ["1", "2"],
-    entities: {
-      "1": {
-        id: "1",
-        text: "c1",
-        user: {
-          id: "1",
-          username: "alex",
-          avatar:
-            "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg",
-        },
-      },
-      "2": {
-        id: "2",
-        text: "c2",
-        user: {
-          id: "2",
-          username: "bob",
-          avatar:
-            "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg",
-        },
-      },
-    },
+    ids: [],
+    entities: {},
     error: undefined,
   }),
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCommentsByArticleId.pending, (state, action) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(
+        fetchCommentsByArticleId.fulfilled,
+        (state, action: PayloadAction<Comment[]>) => {
+          state.isLoading = false;
+          commentsAdapter.setAll(state, action.payload);
+        }
+      )
+      .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 export const { actions: articleDetailsCommentsActions } =
