@@ -102,9 +102,9 @@
     },
     {
       "id": "3",
-      "text": "some comment 3",
+      "text": "comment c",
       "articleId": "1",
-      "userId": "1"
+      "userId": "2"
     }
   ],
   "users": [

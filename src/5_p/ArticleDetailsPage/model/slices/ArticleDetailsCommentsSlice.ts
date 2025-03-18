@@ -27,7 +27,7 @@ const articleDetailsCommentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCommentsByArticleId.pending, (state, action) => {
+      .addCase(fetchCommentsByArticleId.pending, (state) => {
         state.error = undefined;
         state.isLoading = true;
       })
@@ -45,7 +45,5 @@ const articleDetailsCommentsSlice = createSlice({
   },
 });
 
-export const { actions: articleDetailsCommentsActions } =
-  articleDetailsCommentsSlice;
 export const { reducer: articleDetailsCommentsReducer } =
   articleDetailsCommentsSlice;

@@ -21,6 +21,7 @@ export const CommentList = memo(
         {comments?.length ? (
           comments.map((c: Comment) => (
             <CommentCard
+              key={c.id}
               isLoading={isLoading}
               className={cls.comment}
               comment={c}
