@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -22,6 +22,7 @@ import {
   articleDetailsCommentsReducer,
   getArticleComments,
 } from "../../model/slices/ArticleDetailsCommentsSlice";
+import { addCommentForArticle } from "5_p/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle";
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -44,6 +45,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     dispatch(fetchCommentsByArticleId(id));
   });
 
+  const onSendComment = useCallback((text: string) => {
+    dispatch(addCommentForArticle(text));
+  }, []);
+
   if (!id) {
     return (
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
@@ -57,7 +62,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t("comments")} />
-        <AddCommentForm />
+        <AddCommentForm onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </div>
     </DynamicModuleLoader>
