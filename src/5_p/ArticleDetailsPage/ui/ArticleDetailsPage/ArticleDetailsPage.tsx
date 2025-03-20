@@ -13,6 +13,7 @@ import { Text } from "1_shared/ui/Text/Text";
 
 import { ArticleDetails } from "2_entities/Article";
 import { CommentList } from "2_entities/Comment";
+import AddCommentForm from "3_features/addCommentForm/ui/AddCommentForm/AddCommentForm";
 import { getArticleCommentsIsLoading } from "5_p/ArticleDetailsPage/model/selectors/comments";
 import { fetchCommentsByArticleId } from "5_p/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 
@@ -56,6 +57,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t("comments")} />
+        <AddCommentForm />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </div>
     </DynamicModuleLoader>
