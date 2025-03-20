@@ -24,7 +24,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -105,6 +107,18 @@
       "text": "comment c",
       "articleId": "1",
       "userId": "2"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "2003",
+      "id": "E-kGOAD"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "aaa",
+      "id": "w7fh7Gt"
     }
   ],
   "users": [

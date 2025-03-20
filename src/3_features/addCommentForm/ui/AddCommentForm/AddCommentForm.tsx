@@ -8,7 +8,6 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
-
 import { Input } from "1_shared/ui/Input/Input";
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
 
@@ -17,6 +16,7 @@ import {
   getAddCommentFromError,
   getAddCommentFromText,
 } from "../../model/selectors/AddCommentFormSelectors";
+import { sendComment } from "../../model/services/sendComment/sendComment";
 import {
   addCommentFormActions,
   addCommentFormReducer,
@@ -43,6 +43,10 @@ const AddCommentForm = memo(({ className }: AddCommentFormProps) => {
     [dispatch]
   );
 
+  const onSendComment = useCallback(() => {
+    dispatch(sendComment());
+  }, [dispatch]);
+
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.AddCommentForm, {}, [className])}>
@@ -52,7 +56,9 @@ const AddCommentForm = memo(({ className }: AddCommentFormProps) => {
           value={text}
           onChange={onCommentTextChange}
         />
-        <Button theme={ButtonTheme.OUTLINE}>{t("send")}</Button>
+        <Button onClick={onSendComment} theme={ButtonTheme.OUTLINE}>
+          {t("send")}
+        </Button>
       </div>
     </DynamicModuleLoader>
   );
