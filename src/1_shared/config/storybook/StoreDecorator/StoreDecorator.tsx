@@ -4,12 +4,16 @@ import { ReducersList } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleL
 import { profileReducer } from "2_entities/Profile";
 import { articleDetailsReducer } from "2_entities/Article/model/slice/articleDetailsSlice";
 import { loginReducer } from "3_features/AuthByUsername/model/slice/loginSlice";
+import { addCommentFormReducer } from "3_features/addCommentForm/model/slices/addCommentFormSlice";
+import { articleDetailsCommentsReducer } from "5_p/ArticleDetailsPage/model/slices/ArticleDetailsCommentsSlice";
 import { StateSchema, StoreProvider } from "7_app/providers/StoreProvider";
 
 const defaultAsyncReducers: ReducersList = {
   loginForm: loginReducer,
   profile: profileReducer,
   articleDetails: articleDetailsReducer,
+  addCommentForm: addCommentFormReducer,
+  articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 export const StoreDecorator =
