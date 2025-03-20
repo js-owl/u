@@ -1,11 +1,16 @@
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+
 import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
 import {
   DynamicModuleLoader,
   ReducersList,
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
+import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
+import { Text, TextTheme } from "1_shared/ui/Text/Text";
+
 import {
   fetchProfileData,
   getProfileData,
@@ -19,10 +24,10 @@ import {
   profileReducer,
   ValidateProfileError,
 } from "2_entities/Profile";
-import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 import { Currency } from "2_entities/Currency";
 import { Country } from "2_entities/Country";
-import { Text, TextTheme } from "1_shared/ui/Text/Text";
+
+import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
 const reducers: ReducersList = { profile: profileReducer };
 
@@ -38,6 +43,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
+  const { id } = useParams<{ id: string }>();
 
   const validateErrorTranslate = {
     [ValidateProfileError.SERVER_ERROR]: t("server error"),
@@ -49,11 +55,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     ),
   };
 
-  useEffect(() => {
-    if (__PROJECT__ !== "storybook") {
-      dispatch(fetchProfileData());
+  useInitialEffect(() => {
+    if (id) {
+      dispatch(fetchProfileData(id));
     }
-  }, [dispatch]);
+  });
 
   const onChangeFirstName = useCallback(
     (value?: string) => {
