@@ -1,7 +1,9 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
+import { Route, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import EyeIcon from "1_shared/assets/icons/eye-20-20.svg";
+import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Text } from "1_shared/ui/Text/Text";
 import { Icon } from "1_shared/ui/Icon/Icon";
@@ -17,6 +19,7 @@ import {
   ArticleView,
 } from "../../model/types/article";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+// ----- imports -----
 
 interface ArticleListItemProps {
   className?: string;
@@ -27,6 +30,7 @@ interface ArticleListItemProps {
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
   const { className, article, view } = props;
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const types = <Text text={article.type.join(", ")} className={cls.types} />;
   const views = (
     <>
@@ -34,6 +38,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
       <Icon Svg={EyeIcon} />
     </>
   );
+
+  const onOpenArticle = useCallback(() => {
+    navigate(RoutePath.article_details + article.id);
+  }, [article.id, navigate]);
 
   if (view === ArticleView.BIG) {
     const textBlock = article.blocks.find(
@@ -60,7 +68,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             />
           )}
           <div className={cls.footer}>
-            <Button>{t("read more")}</Button>
+            <Button onClick={onOpenArticle}>{t("read more")}</Button>
             {views}
           </div>
         </Card>
@@ -72,7 +80,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     <div
       className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
     >
-      <Card className={cls.card}>
+      <Card className={cls.card} onClick={onOpenArticle}>
         <div className={cls.imageWrapper}>
           <img alt={article.title} src={article.img} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />
