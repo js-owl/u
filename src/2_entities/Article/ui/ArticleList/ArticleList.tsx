@@ -14,7 +14,12 @@ interface ArticleListProps {
 export const ArticleList = memo((props: ArticleListProps) => {
   const { className, isLoading, articles, view = ArticleView.SMALL } = props;
   const renderArticle = (article: Article) => (
-    <ArticleListItem key={article.id} article={article} view={view} />
+    <ArticleListItem
+      key={article.id}
+      article={article}
+      view={view}
+      className={cls.card}
+    />
   );
 
   return (

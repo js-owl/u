@@ -82,7 +82,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
   return (
     <div className={classNames(cls.ArticlesPage, {}, [className])}>
-      <ArticleList articles={[article]} />
+      <ArticleList
+        articles={new Array(16)
+          .fill(0)
+          .map((ite, index) => ({ ...article, id: String(index) }))}
+      />
     </div>
   );
 };
