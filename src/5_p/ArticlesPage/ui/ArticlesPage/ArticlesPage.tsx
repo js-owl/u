@@ -1,16 +1,23 @@
 import { memo } from "react";
-import { useTranslation } from "react-i18next";
 import { classNames } from "1_shared/libs/classNames/classNames";
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
 import { Article, ArticleList } from "2_entities/Article";
 import { ArticleView } from "2_entities/Article/model/types/article";
 import cls from "./ArticlesPage.module.scss";
+import { articlesPageReducer } from "../../model/slices/articlePageSlice";
 
 interface ArticlesPageProps {
   className?: string;
 }
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
-  // const { t } = useTranslation("articles");
 
+const reducers: ReducersList = {
+  articlesPage: articlesPageReducer,
+};
+
+const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const article = {
     id: "1",
     title: "Javascript news",
@@ -87,14 +94,16 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   } as Article;
 
   return (
-    <div className={classNames(cls.ArticlesPage, {}, [className])}>
-      <ArticleList
-        view={ArticleView.SMALL}
-        articles={new Array(16)
-          .fill(0)
-          .map((ite, index) => ({ ...article, id: String(index) }))}
-      />
-    </div>
+    <DynamicModuleLoader reducers={reducers}>
+      <div className={classNames(cls.ArticlesPage, {}, [className])}>
+        <ArticleList
+          view={ArticleView.SMALL}
+          articles={new Array(16)
+            .fill(0)
+            .map((item, index) => ({ ...article, id: String(index) }))}
+        />
+      </div>
+    </DynamicModuleLoader>
   );
 };
 export default memo(ArticlesPage);

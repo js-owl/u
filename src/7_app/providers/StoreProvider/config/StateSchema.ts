@@ -8,13 +8,15 @@ import {
 } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { To } from "history";
+
 import { CounterSchema } from "2_entities/Counter";
 import { UserSchema } from "2_entities/User";
 import { ProfileShema } from "2_entities/Profile";
 import { ArticleDetailsSchema } from "2_entities/Article";
 import { LoginSchema } from "3_features/AuthByUsername";
+import { AddCommentFormSchema } from "3_features/addCommentForm";
 import { ArticleDetailsCommentsSchema } from "5_p/ArticleDetailsPage";
-import { AddCommentFormSchema } from "3_features/addCommentForm/model/types/addCommentForm";
+import { ArticlesPageSchema } from "5_p/ArticlesPage";
 
 export interface StateSchema {
   counter: CounterSchema;
@@ -26,6 +28,7 @@ export interface StateSchema {
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
   addCommentForm?: AddCommentFormSchema;
+  articlesPage?: ArticlesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
