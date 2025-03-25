@@ -10,6 +10,7 @@ import {
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
 import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
 import { Text, TextTheme } from "1_shared/ui/Text/Text";
+import { Page } from "1_shared/ui/Page/Page";
 
 import {
   fetchProfileData,
@@ -117,7 +118,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div>
+      <Page>
         <ProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err) => (
@@ -141,7 +142,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
           onChangeCurrency={onChangeCurrency}
           onChangeCountry={onChangeCountry}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };

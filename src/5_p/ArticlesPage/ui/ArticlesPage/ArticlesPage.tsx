@@ -1,5 +1,6 @@
 import { memo, useCallback } from "react";
 import { useSelector } from "react-redux";
+
 import { classNames } from "1_shared/libs/classNames/classNames";
 import {
   DynamicModuleLoader,
@@ -7,8 +8,9 @@ import {
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
 import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
 import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
+import { Page } from "1_shared/ui/Page/Page";
 
-import { Article, ArticleList, ArticleViewSelector } from "2_entities/Article";
+import { ArticleList, ArticleViewSelector } from "2_entities/Article";
 import { ArticleView } from "2_entities/Article/model/types/article";
 import cls from "./ArticlesPage.module.scss";
 import {
@@ -52,10 +54,10 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <div className={classNames(cls.ArticlesPage, {}, [className])}>
+      <Page className={classNames(cls.ArticlesPage, {}, [className])}>
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList isLoading={isLoading} view={view} articles={articles} />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
