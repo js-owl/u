@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Page } from "1_shared/ui/Page/Page";
+import { Page } from "4_widgets/Page/Page";
 import { Counter } from "2_entities/Counter";
 
 const AboutPage = () => {

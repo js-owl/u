@@ -25,7 +25,7 @@ import {
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
-import { Page } from "1_shared/ui/Page/Page";
+import { Page } from "4_widgets/Page/Page";
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
