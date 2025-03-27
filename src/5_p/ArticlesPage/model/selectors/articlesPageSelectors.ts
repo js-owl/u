@@ -4,6 +4,8 @@ import { StateSchema } from "7_app/providers/StoreProvider";
 export const getArticlesPageIsLoading = (state: StateSchema) =>
   state.articlesPage?.isLoading || false;
 
+export const getArticlesPageInited = (state: StateSchema) =>
+  state.articlesPage?._inited;
 export const getArticlesPageView = (state: StateSchema) =>
   state.articlesPage?.view || ArticleView.SMALL;
 export const getArticlesPageNum = (state: StateSchema) =>
