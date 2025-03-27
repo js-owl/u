@@ -1,5 +1,4 @@
 import { CombinedState } from "redux";
-import { NavigateOptions } from "react-router";
 import {
   AnyAction,
   EnhancedStore,
@@ -7,7 +6,6 @@ import {
   ReducersMapObject,
 } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
-import { To } from "history";
 
 import { CounterSchema } from "2_entities/Counter";
 import { UserSchema } from "2_entities/User";
@@ -32,12 +30,14 @@ export interface StateSchema {
 }
 
 export type StateSchemaKey = keyof StateSchema;
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StateSchema>;
   reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
   add: (key: StateSchemaKey, reducer: Reducer) => void;
   remove: (key: StateSchemaKey) => void;
+  getMountedReducers: () => MountedReducers;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
