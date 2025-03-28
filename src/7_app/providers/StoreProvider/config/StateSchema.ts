@@ -13,12 +13,14 @@ import { ProfileShema } from "2_entities/Profile";
 import { ArticleDetailsSchema } from "2_entities/Article";
 import { LoginSchema } from "3_features/AuthByUsername";
 import { AddCommentFormSchema } from "3_features/addCommentForm";
+import { UISchema } from "3_features/UI";
 import { ArticleDetailsCommentsSchema } from "5_p/ArticleDetailsPage";
 import { ArticlesPageSchema } from "5_p/ArticlesPage";
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
+  ui: UISchema;
 
   // async
   loginForm?: LoginSchema;
