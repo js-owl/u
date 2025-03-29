@@ -16,11 +16,13 @@ import {
 import { ArticleSortSelector } from "2_entities/Article/ui/ArticleSortSelector/ArticleSortSelector";
 import {
   getArticlesPageOrder,
+  getArticlesPageSearch,
   getArticlesPageSort,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 import { articlesPageActions } from "../../model/slices/articlePageSlice";
 import cls from "./ArticlesPageFilters.module.scss";
+import { fetchArticlesList } from "5_p/ArticlesPage/model/serviices/fetchArticlesList/fetchArticlesList";
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -33,6 +35,11 @@ export const ArticlesPageFilters = memo(
     const view = useSelector(getArticlesPageView);
     const sort = useSelector(getArticlesPageSort);
     const order = useSelector(getArticlesPageOrder);
+    const search = useSelector(getArticlesPageSearch);
+
+    const fetchData = useCallback(() => {
+      dispatch(fetchArticlesList({ replace: true }));
+    }, [dispatch]);
 
     const onChangeView = useCallback(
       (view: ArticleView) => {
@@ -44,15 +51,28 @@ export const ArticlesPageFilters = memo(
     const onChangeSort = useCallback(
       (newSort: ArticleSortField) => {
         dispatch(articlesPageActions.setSort(newSort));
+        dispatch(articlesPageActions.setPage(1));
+        fetchData();
       },
-      [dispatch]
+      [dispatch, fetchData]
     );
 
     const onChangeOrder = useCallback(
       (newOrder: SortOrder) => {
         dispatch(articlesPageActions.setOrder(newOrder));
+        dispatch(articlesPageActions.setPage(1));
+        fetchData();
       },
-      [dispatch]
+      [dispatch, fetchData]
+    );
+
+    const onChangeSearch = useCallback(
+      (search: string) => {
+        dispatch(articlesPageActions.setSearch(search));
+        dispatch(articlesPageActions.setPage(1));
+        fetchData();
+      },
+      [dispatch, fetchData]
     );
 
     return (
@@ -67,7 +87,11 @@ export const ArticlesPageFilters = memo(
           <ArticleViewSelector view={view} onViewClick={onChangeView} />
         </div>
         <Card className={cls.search}>
-          <Input placeholder={t("search")} />
+          <Input
+            value={search}
+            onChange={onChangeSearch}
+            placeholder={t("search")}
+          />
         </Card>
       </div>
     );
