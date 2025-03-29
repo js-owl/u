@@ -23,6 +23,7 @@ import {
 import { articlesPageActions } from "../../model/slices/articlePageSlice";
 import cls from "./ArticlesPageFilters.module.scss";
 import { fetchArticlesList } from "5_p/ArticlesPage/model/serviices/fetchArticlesList/fetchArticlesList";
+import { useDebounce } from "1_shared/libs/hooks/useDebounce/useDebounce";
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -40,6 +41,7 @@ export const ArticlesPageFilters = memo(
     const fetchData = useCallback(() => {
       dispatch(fetchArticlesList({ replace: true }));
     }, [dispatch]);
+    const debouncedFetchData = useDebounce(fetchData, 1000);
 
     const onChangeView = useCallback(
       (view: ArticleView) => {
@@ -70,9 +72,9 @@ export const ArticlesPageFilters = memo(
       (search: string) => {
         dispatch(articlesPageActions.setSearch(search));
         dispatch(articlesPageActions.setPage(1));
-        fetchData();
+        debouncedFetchData();
       },
-      [dispatch, fetchData]
+      [dispatch, debouncedFetchData]
     );
 
     return (
