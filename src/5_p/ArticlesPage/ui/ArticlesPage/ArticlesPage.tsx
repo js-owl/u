@@ -10,11 +10,9 @@ import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitia
 import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
 import { Page } from "4_widgets/Page/Page";
 
-import { ArticleList, ArticleViewSelector } from "2_entities/Article";
-import { ArticleView } from "2_entities/Article/model/types/article";
+import { ArticleList } from "2_entities/Article";
 import cls from "./ArticlesPage.module.scss";
 import {
-  articlesPageActions,
   articlesPageReducer,
   getArticles,
 } from "../../model/slices/articlePageSlice";
@@ -28,6 +26,7 @@ import {
 } from "../../model/selectors/articlesPageSelectors";
 import { fetchNextArticlesPage } from "../../model/serviices/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "../../model/serviices/initArticlesPage/initArticlesPage";
+import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 
 interface ArticlesPageProps {
   className?: string;
@@ -51,13 +50,6 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     dispatch(initArticlesPage());
   });
 
-  const onChangeView = useCallback(
-    (view: ArticleView) => {
-      dispatch(articlesPageActions.setView(view));
-    },
-    [dispatch]
-  );
-
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);
@@ -68,8 +60,13 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
         onScrollEnd={onLoadNextPart}
         className={classNames(cls.ArticlesPage, {}, [className])}
       >
-        <ArticleViewSelector view={view} onViewClick={onChangeView} />
-        <ArticleList isLoading={isLoading} view={view} articles={articles} />
+        <ArticlesPageFilters />
+        <ArticleList
+          isLoading={isLoading}
+          view={view}
+          articles={articles}
+          className={cls.list}
+        />
       </Page>
     </DynamicModuleLoader>
   );
