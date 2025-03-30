@@ -8,10 +8,10 @@ import { Card } from "1_shared/ui/Card/Card";
 import { Input } from "1_shared/ui/Input/Input";
 import { SortOrder } from "1_shared/types";
 import { useDebounce } from "1_shared/libs/hooks/useDebounce/useDebounce";
-import { TabItem, Tabs } from "1_shared/ui/Tabs/Tabs";
 
 import {
   ArticleSortField,
+  ArticleTypeTabs,
   ArticleView,
   ArticleViewSelector,
 } from "2_entities/Article";
@@ -83,22 +83,12 @@ export const ArticlesPageFilters = memo(
     );
 
     const onChangeType = useCallback(
-      (tab: TabItem) => {
-        dispatch(articlesPageActions.setType(tab.value as ArticleType));
+      (value: ArticleType) => {
+        dispatch(articlesPageActions.setType(value));
         dispatch(articlesPageActions.setPage(1));
         fetchData();
       },
       [dispatch, fetchData]
-    );
-
-    const typeTabs = useMemo<TabItem[]>(
-      () => [
-        { value: ArticleType.ALL, content: t("ALL") },
-        { value: ArticleType.IT, content: t("IT") },
-        { value: ArticleType.ECONOMICS, content: t("ECONOMICS") },
-        { value: ArticleType.SCIENCE, content: t("SCIENCE") },
-      ],
-      [t]
     );
 
     return (
@@ -119,10 +109,9 @@ export const ArticlesPageFilters = memo(
             placeholder={t("search")}
           />
         </Card>
-        <Tabs
-          tabs={typeTabs}
+        <ArticleTypeTabs
           value={type}
-          onTabClick={onChangeType}
+          onChangeType={onChangeType}
           className={cls.tabs}
         />
       </div>
