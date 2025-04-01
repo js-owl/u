@@ -11,21 +11,27 @@ import {
 } from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
 import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
 import { Button } from "1_shared/ui/Button/Button";
-import { Text } from "1_shared/ui/Text/Text";
+import { Text, TextSize } from "1_shared/ui/Text/Text";
 
-import { ArticleDetails } from "2_entities/Article";
+import { ArticleDetails, ArticleList } from "2_entities/Article";
 import { CommentList } from "2_entities/Comment";
 import AddCommentForm from "3_features/addCommentForm/ui/AddCommentForm/AddCommentForm";
+import { Page } from "4_widgets/Page/Page";
 
-import cls from "./ArticleDetailsPage.module.scss";
+import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
+import { getArticleRecommendationsIsLoading } from "../../model/selectors/recommendations";
+import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
+import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
+import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import {
   articleDetailsCommentsReducer,
   getArticleComments,
 } from "../../model/slices/ArticleDetailsCommentsSlice";
-import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
-import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
-import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
-import { Page } from "4_widgets/Page/Page";
+import {
+  articleDetailsPageRecomendationsReducer,
+  getArticleRecomendations,
+} from "../../model/slices/articleDetailsPageRecomendationsSlice";
+import cls from "./ArticleDetailsPage.module.scss";
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -34,6 +40,7 @@ interface ArticleDetailsPageProps {
 
 const reducers: ReducersList = {
   articleDetailsComments: articleDetailsCommentsReducer,
+  articleDetailsRecommendations: articleDetailsPageRecomendationsReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
@@ -42,10 +49,15 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const comments = useSelector(getArticleComments.selectAll);
+  const recommendations = useSelector(getArticleRecomendations.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+  const recommendationsIsLoading = useSelector(
+    getArticleRecommendationsIsLoading
+  );
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchArticleRecommendations());
   });
 
   const onSendComment = useCallback((text: string) => {
@@ -69,7 +81,21 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <Button onClick={onBackToList}>{t("back to list")}</Button>
         <ArticleDetails id={id} />
-        <Text className={cls.commentTitle} title={t("comments")} />
+        <Text
+          size={TextSize.L}
+          className={cls.commentTitle}
+          title={t("recommend")}
+        />
+        <ArticleList
+          articles={recommendations}
+          isLoading={recommendationsIsLoading}
+          className={cls.recommendations}
+        />
+        <Text
+          size={TextSize.L}
+          className={cls.commentTitle}
+          title={t("comments")}
+        />
         <AddCommentForm onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />
       </Page>
