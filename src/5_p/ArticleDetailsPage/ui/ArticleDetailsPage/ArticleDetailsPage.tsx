@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import {
   DynamicModuleLoader,
@@ -33,6 +32,7 @@ import {
 } from "../../model/slices/articleDetailsPageRecomendationsSlice";
 import cls from "./ArticleDetailsPage.module.scss";
 import { articleDetailsPageReducer } from "5_p/ArticleDetailsPage/model/slices";
+import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -47,7 +47,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const { t } = useTranslation("article-details");
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const comments = useSelector(getArticleComments.selectAll);
   const recommendations = useSelector(getArticleRecomendations.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
@@ -64,10 +63,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     dispatch(addCommentForArticle(text));
   }, []);
 
-  const onBackToList = useCallback(() => {
-    navigate(RoutePath.articles);
-  }, [navigate]);
-
   if (!id) {
     return (
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
@@ -79,7 +74,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        <Button onClick={onBackToList}>{t("back to list")}</Button>
+        <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <Text
           size={TextSize.L}
