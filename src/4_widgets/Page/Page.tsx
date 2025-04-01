@@ -43,7 +43,7 @@ export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
         path: pathname,
       })
     );
-  }, 1000);
+  }, 500);
 
   return (
     <section
