@@ -1,12 +1,17 @@
 /* eslint-disable i18next/no-literal-string */
 import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+
+import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
 import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
+import { Text, TextTheme } from "1_shared/ui/Text/Text";
+import { AppLink, AppLinkTheme } from "1_shared/ui/AppLink/AppLink";
+
+import { getUserAuthData, userActions } from "2_entities/User";
 import { LoginModal } from "3_features/AuthByUsername";
 import cls from "./Navbar.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserAuthData, userActions } from "2_entities/User";
 
 interface NavbarProps {
   className?: string;
@@ -30,6 +35,18 @@ export const Navbar = ({ className }: NavbarProps) => {
   if (authData) {
     return (
       <header className={classNames(cls.Navbar, {}, [className])}>
+        <Text
+          className={cls.appName}
+          title={t("Alex")}
+          theme={TextTheme.INVERTED}
+        />
+        <AppLink
+          to={RoutePath.article_create}
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.createBtn}
+        >
+          {t("create article")}
+        </AppLink>
         <Button
           theme={ButtonTheme.CLEAR_INVERTED}
           className={cls.links}

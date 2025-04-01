@@ -8,8 +8,8 @@ import { classNames } from "1_shared/libs/classNames/classNames";
 import { Button } from "1_shared/ui/Button/Button";
 import { getUserAuthData } from "2_entities/User";
 import { getArticleDetailsData } from "2_entities/Article";
-import cls from "./ArticleDetailsPageHeader.module.scss";
 import { getCanEditArticle } from "5_p/ArticleDetailsPage/model/selectors/article";
+import cls from "./ArticleDetailsPageHeader.module.scss";
 
 interface ArticleDetailsPageHeaderProps {
   className?: string;
@@ -27,13 +27,17 @@ export const ArticleDetailsPageHeader = memo(
       navigate(RoutePath.articles);
     }, [navigate]);
 
+    const onEditArticle = useCallback(() => {
+      navigate(`${RoutePath.article_details}${article?.id}/edit`);
+    }, [article?.id, navigate]);
+
     return (
       <div
         className={classNames(cls.ArticleDetailsPageHeader, {}, [className])}
       >
         <Button onClick={onBackToList}>{t("back to list")}</Button>
         {canEdit && (
-          <Button className={cls.editBtn} onClick={onBackToList}>
+          <Button className={cls.editBtn} onClick={onEditArticle}>
             {t("edit")}
           </Button>
         )}
