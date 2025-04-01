@@ -14,11 +14,8 @@ import { ArticleDetailsSchema } from "2_entities/Article";
 import { LoginSchema } from "3_features/AuthByUsername";
 import { AddCommentFormSchema } from "3_features/addCommentForm";
 import { UISchema } from "3_features/UI";
-import {
-  ArticleDetailsCommentsSchema,
-  ArticleDetailsRecommendationsSchema,
-} from "5_p/ArticleDetailsPage";
 import { ArticlesPageSchema } from "5_p/ArticlesPage";
+import { ArticleDetailsPageSchema } from "5_p/ArticleDetailsPage";
 
 export interface StateSchema {
   counter: CounterSchema;
@@ -29,10 +26,9 @@ export interface StateSchema {
   loginForm?: LoginSchema;
   profile?: ProfileShema;
   articleDetails?: ArticleDetailsSchema;
-  articleDetailsComments?: ArticleDetailsCommentsSchema;
-  articleDetailsRecommendations?: ArticleDetailsRecommendationsSchema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: ArticlesPageSchema;
+  articleDetailPage?: ArticleDetailsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

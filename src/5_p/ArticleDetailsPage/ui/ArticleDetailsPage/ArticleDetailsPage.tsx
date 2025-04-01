@@ -32,6 +32,7 @@ import {
   getArticleRecomendations,
 } from "../../model/slices/articleDetailsPageRecomendationsSlice";
 import cls from "./ArticleDetailsPage.module.scss";
+import { articleDetailsPageReducer } from "5_p/ArticleDetailsPage/model/slices";
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -39,8 +40,7 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-  articleDetailsComments: articleDetailsCommentsReducer,
-  articleDetailsRecommendations: articleDetailsPageRecomendationsReducer,
+  articleDetailPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
