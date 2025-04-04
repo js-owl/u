@@ -1,17 +1,17 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { Sidebar } from "./Sidebar";
-import { componentRender } from "1_shared/libs/tests/componentRender/componentRender";
+import { fireEvent, screen } from '@testing-library/react';
+import { componentRender } from '1_shared/libs/tests/componentRender/componentRender';
+import { Sidebar } from './Sidebar';
 
-describe("sidebar", () => {
-  test("toBeInTheDocument", () => {
+describe('sidebar', () => {
+  test('toBeInTheDocument', () => {
     componentRender(<Sidebar />);
-    expect(screen.getByTestId("sidebar")).toBeInTheDocument();
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument();
   });
-  test("toHaveClass", () => {
+  test('toHaveClass', () => {
     componentRender(<Sidebar />);
-    const toggleBtn = screen.getByTestId("sidebar-toggle");
-    expect(screen.getByTestId("sidebar")).toBeInTheDocument();
+    const toggleBtn = screen.getByTestId('sidebar-toggle');
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     fireEvent.click(toggleBtn);
-    expect(screen.getByTestId("sidebar")).toHaveClass("collapsed");
+    expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
   });
 });

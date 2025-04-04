@@ -1,14 +1,14 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Avatar } from "1_shared/ui/Avatar/Avatar";
-import { Text } from "1_shared/ui/Text/Text";
-import { Skeleton } from "1_shared/ui/Skeleton/Skeleton";
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Avatar } from '1_shared/ui/Avatar/Avatar';
+import { Text } from '1_shared/ui/Text/Text';
+import { Skeleton } from '1_shared/ui/Skeleton/Skeleton';
 
-import { Comment } from "2_entities/Comment/model/types/comment";
-import cls from "./CommentCard.module.scss";
-import { AppLink } from "1_shared/ui/AppLink/AppLink";
-import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
+import { Comment } from '2_entities/Comment/model/types/comment';
+import { AppLink } from '1_shared/ui/AppLink/AppLink';
+import { RoutePath } from '1_shared/config/routeConfig/routeConfig';
+import cls from './CommentCard.module.scss';
 
 interface CommentCardProps {
   className?: string;
@@ -24,10 +24,10 @@ export const CommentCard = memo(
           className={classNames(cls.CommentCard, {}, [className, cls.loading])}
         >
           <div className={cls.header}>
-            <Skeleton width={30} height={30} border={"50%"} />
+            <Skeleton width={30} height={30} border="50%" />
             <Skeleton width={100} height={16} className={cls.username} />
           </div>
-          <Skeleton width={"100%"} height={50} className={cls.text} />
+          <Skeleton width="100%" height={50} className={cls.text} />
         </div>
       );
     }

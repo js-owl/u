@@ -1,40 +1,40 @@
-import { memo, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 
-import { classNames } from "1_shared/libs/classNames/classNames";
+import { classNames } from '1_shared/libs/classNames/classNames';
 import {
   DynamicModuleLoader,
-  ReducersList,
-} from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
-import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
-import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
-import { Page } from "4_widgets/Page/Page";
+  ReducersList
+} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
+import { Page } from '4_widgets/Page/Page';
 
-import { ArticleList } from "2_entities/Article";
-import cls from "./ArticlesPage.module.scss";
+import { ArticleList } from '2_entities/Article';
+import { useSearchParams } from 'react-router-dom';
+import cls from './ArticlesPage.module.scss';
 import {
   articlesPageReducer,
-  getArticles,
-} from "../../model/slices/articlePageSlice";
+  getArticles
+} from '../../model/slices/articlePageSlice';
 import {
   getArticlesPageError,
   getArticlesPageHasMore,
   getArticlesPageInited,
   getArticlesPageIsLoading,
   getArticlesPageNum,
-  getArticlesPageView,
-} from "../../model/selectors/articlesPageSelectors";
-import { fetchNextArticlesPage } from "../../model/serviices/fetchNextArticlesPage/fetchNextArticlesPage";
-import { initArticlesPage } from "../../model/serviices/initArticlesPage/initArticlesPage";
-import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
-import { useSearchParams } from "react-router-dom";
+  getArticlesPageView
+} from '../../model/selectors/articlesPageSelectors';
+import { fetchNextArticlesPage } from '../../model/serviices/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/serviices/initArticlesPage/initArticlesPage';
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 
 interface ArticlesPageProps {
   className?: string;
 }
 
 const reducers: ReducersList = {
-  articlesPage: articlesPageReducer,
+  articlesPage: articlesPageReducer
 };
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {

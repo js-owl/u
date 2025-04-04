@@ -1,25 +1,25 @@
-import { memo, Reducer, useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { memo, Reducer, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { useAppDispatch } from "1_shared/libs/hooks/useAppDispatch/useAppDispatch";
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
 import {
   DynamicModuleLoader,
-  ReducersList,
-} from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
-import { Input } from "1_shared/ui/Input/Input";
-import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
+  ReducersList
+} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { Input } from '1_shared/ui/Input/Input';
+import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
 
-import cls from "./AddCommentForm.module.scss";
+import cls from './AddCommentForm.module.scss';
 import {
   getAddCommentFromError,
-  getAddCommentFromText,
-} from "../../model/selectors/AddCommentFormSelectors";
+  getAddCommentFromText
+} from '../../model/selectors/AddCommentFormSelectors';
 import {
   addCommentFormActions,
-  addCommentFormReducer,
-} from "../../model/slices/addCommentFormSlice";
+  addCommentFormReducer
+} from '../../model/slices/addCommentFormSlice';
 // ----- imports -----
 
 export interface AddCommentFormProps {
@@ -28,12 +28,12 @@ export interface AddCommentFormProps {
 }
 
 const reducers: ReducersList = {
-  addCommentForm: addCommentFormReducer,
+  addCommentForm: addCommentFormReducer
 };
 
 const AddCommentForm = memo(
   ({ className, onSendComment }: AddCommentFormProps) => {
-    const { t } = useTranslation("article-details");
+    const { t } = useTranslation('article-details');
     const text = useSelector(getAddCommentFromText);
     const error = useSelector(getAddCommentFromError);
     const dispatch = useAppDispatch();
@@ -46,8 +46,8 @@ const AddCommentForm = memo(
     );
 
     const onSendHandler = useCallback(() => {
-      onSendComment(text || "");
-      onCommentTextChange("");
+      onSendComment(text || '');
+      onCommentTextChange('');
     }, [onCommentTextChange, onSendComment, text]);
 
     return (
@@ -55,12 +55,12 @@ const AddCommentForm = memo(
         <div className={classNames(cls.AddCommentForm, {}, [className])}>
           <Input
             className={cls.input}
-            placeholder={t("comment")}
+            placeholder={t('comment')}
             value={text}
             onChange={onCommentTextChange}
           />
           <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
-            {t("send")}
+            {t('send')}
           </Button>
         </div>
       </DynamicModuleLoader>

@@ -1,21 +1,21 @@
-import { classNames, Mods } from "1_shared/libs/classNames/classNames";
-import cls from "./Text.module.scss";
+import { classNames, Mods } from '1_shared/libs/classNames/classNames';
+import cls from './Text.module.scss';
 
 export enum TextTheme {
-  PRIMARY = "primary",
-  INVERTED = "inverted",
-  ERROR = "error",
+  PRIMARY = 'primary',
+  INVERTED = 'inverted',
+  ERROR = 'error',
 }
 
 export enum TextAlign {
-  LEFT = "left",
-  CENTER = "center",
-  RIGHT = "right",
+  LEFT = 'left',
+  CENTER = 'center',
+  RIGHT = 'right',
 }
 
 export enum TextSize {
-  M = "size_m",
-  L = "size_l",
+  M = 'size_m',
+  L = 'size_l',
 }
 
 interface TextProps {
@@ -34,13 +34,13 @@ export const Text = (props: TextProps) => {
     title,
     theme = TextTheme.PRIMARY,
     align = TextAlign.LEFT,
-    size = TextSize.M,
+    size = TextSize.M
   } = props;
 
   const mods: Mods = {
     [cls[theme]]: true,
     [cls[align]]: true,
-    [cls[size]]: true,
+    [cls[size]]: true
   };
 
   return (

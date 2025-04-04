@@ -1,19 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AddCommentFormSchema } from "../types/addCommentForm";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AddCommentFormSchema } from '../types/addCommentForm';
 // import { loginByUsername } from "../services/loginByUsername/loginByUsername";
 
 const initialState: AddCommentFormSchema = {
-  text: "",
+  text: ''
 };
 
 export const addCommentFormSlice = createSlice({
-  name: "addCommentForm",
+  name: 'addCommentForm',
   initialState,
   reducers: {
     setText: (state, action: PayloadAction<string>) => {
       state.text = action.payload;
-    },
-  },
+    }
+  }
   // extraReducers: (builder) => {
   //   builder
   //     .addCase(loginByUsername.pending, (state, action) => {

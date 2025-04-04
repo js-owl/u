@@ -1,4 +1,3 @@
-import { StateSchema } from "7_app/providers/StoreProvider";
+import { StateSchema } from '7_app/providers/StoreProvider';
 
-export const getProfileIsLoading = (state: StateSchema) =>
-  state?.profile?.isLoading;
+export const getProfileIsLoading = (state: StateSchema) => state?.profile?.isLoading;

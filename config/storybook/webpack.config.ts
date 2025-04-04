@@ -1,18 +1,18 @@
 /* eslint-disable no-param-reassign */
-import webpack, { DefinePlugin } from "webpack"; // { RuleSetRule }
-import path from "path";
-import { buildCssLoader } from "../build/loaders/buildCssLoader";
-import { BuildPaths } from "../build/types/config";
+import webpack, { DefinePlugin } from 'webpack'; // { RuleSetRule }
+import path from 'path';
+import { buildCssLoader } from '../build/loaders/buildCssLoader';
+import { BuildPaths } from '../build/types/config';
 
 export default ({ config }: { config: webpack.Configuration }) => {
   const paths: BuildPaths = {
-    build: "",
-    html: "",
-    entry: "",
-    src: path.resolve(__dirname, "..", "..", "src"),
+    build: '',
+    html: '',
+    entry: '',
+    src: path.resolve(__dirname, '..', '..', 'src')
   };
   config.resolve?.modules?.push(paths.src);
-  config.resolve?.extensions?.push(".ts", ".tsx");
+  config.resolve?.extensions?.push('.ts', '.tsx');
 
   if (config && config.module) {
     config.module.rules = config.module?.rules?.map((rule: any) => {
@@ -25,15 +25,15 @@ export default ({ config }: { config: webpack.Configuration }) => {
   }
   config.module?.rules?.push({
     test: /\.svg$/,
-    use: ["@svgr/webpack"],
+    use: ['@svgr/webpack']
   });
   config.module?.rules?.push(buildCssLoader(true));
 
   config.plugins?.push(
     new DefinePlugin({
       __IS_DEV__: true,
-      __API__: JSON.stringify(""),
-      __PROJECT__: JSON.stringify("storybook"),
+      __API__: JSON.stringify(''),
+      __PROJECT__: JSON.stringify('storybook')
     })
   );
   return config;

@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchArticleById } from "../services/fetchArticleById/fetchArticleById";
-import { ArticleDetailsSchema } from "../types/articleDetailsSchema";
-import { Article } from "../types/article";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
+import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
+import { Article } from '../types/article';
 
 const initialState: ArticleDetailsSchema = {
   data: undefined,
   isLoading: false,
-  error: undefined,
+  error: undefined
 };
 
 export const articleDetailsSlice = createSlice({
-  name: "articleDetails",
+  name: 'articleDetails',
   initialState,
   reducers: {
     // setReadonly: (state, action: PayloadAction<boolean>) => {
@@ -34,7 +34,7 @@ export const articleDetailsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
-  },
+  }
 });
 
 export const { actions: articleDetailsActions } = articleDetailsSlice;

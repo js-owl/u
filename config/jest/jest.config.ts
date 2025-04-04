@@ -3,32 +3,32 @@
  * https://jestjs.io/docs/configuration
  */
 
-import path from "path";
+import path from 'path';
 
 export default {
-  globals: { __IS_DEV__: true, __API__: "", __PROJECT__: "jest" },
+  globals: { __IS_DEV__: true, __API__: '', __PROJECT__: 'jest' },
   clearMocks: true,
-  testEnvironment: "jsdom",
-  coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
-  moduleDirectories: ["node_modules"],
+  testEnvironment: 'jsdom',
+  coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
+  moduleDirectories: ['node_modules'],
   moduleFileExtensions: [
-    "js",
-    "mjs",
-    "cjs",
-    "jsx",
-    "ts",
-    "tsx",
-    "json",
-    "node",
+    'js',
+    'mjs',
+    'cjs',
+    'jsx',
+    'ts',
+    'tsx',
+    'json',
+    'node'
   ],
-  rootDir: "../../",
-  testMatch: ["<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"],
-  modulePaths: ["<rootDir>src"],
-  setupFilesAfterEnv: ["<rootDir>config/jest/setupTests.ts"],
+  rootDir: '../../',
+  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  modulePaths: ['<rootDir>src'],
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
   moduleNameMapper: {
-    "\\.s?css$": "identity-obj-proxy",
-    "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx"),
-  },
+    '\\.s?css$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
+  }
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,

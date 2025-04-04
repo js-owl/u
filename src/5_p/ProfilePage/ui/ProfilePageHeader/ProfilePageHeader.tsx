@@ -1,23 +1,23 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Button, ButtonTheme } from "1_shared/ui/Button/Button";
-import { Text } from "1_shared/ui/Text/Text";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
+import { Text } from '1_shared/ui/Text/Text';
 import {
   getProfileData,
   getProfileReadonly,
   profileActions,
-  updateProfileData,
-} from "2_entities/Profile";
-import { getUserAuthData } from "2_entities/User";
-import cls from "./ProfilePageHeader.module.scss";
+  updateProfileData
+} from '2_entities/Profile';
+import { getUserAuthData } from '2_entities/User';
+import cls from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
   className?: string;
 }
 export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
-  const { t } = useTranslation("profile");
+  const { t } = useTranslation('profile');
   const authData = useSelector(getUserAuthData);
   const profileData = useSelector(getProfileData);
   const canEdit = authData?.id === profileData?.id;
@@ -31,13 +31,13 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
     dispatch(profileActions.cancelEdit());
   }, [dispatch]);
   const onSave = useCallback(() => {
-    console.log("ProfilePageHeader - onSave()");
+    console.log('ProfilePageHeader - onSave()');
     dispatch(updateProfileData());
   }, [dispatch]);
 
   return (
     <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-      <Text title={t("profile")} />
+      <Text title={t('profile')} />
       {canEdit && (
         <div className={cls.btnsWrapper}>
           {readonly ? (
@@ -46,24 +46,24 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
               theme={ButtonTheme.OUTLINE}
               onClick={onEdit}
             >
-              {t("edit")}
+              {t('edit')}
             </Button>
           ) : (
             <>
-              {" "}
+              {' '}
               <Button
                 className={cls.editBtn}
                 theme={ButtonTheme.OUTLINE_RED}
                 onClick={onCancelEdit}
               >
-                {t("cancel")}
+                {t('cancel')}
               </Button>
               <Button
                 className={cls.saveBtn}
                 theme={ButtonTheme.OUTLINE}
                 onClick={onSave}
               >
-                {t("save")}
+                {t('save')}
               </Button>
             </>
           )}

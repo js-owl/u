@@ -1,10 +1,10 @@
-import { memo } from "react";
-import { useTranslation } from "react-i18next";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Text } from "1_shared/ui/Text/Text";
-import { Comment } from "2_entities/Comment/model/types/comment";
-import cls from "./CommentList.module.scss";
-import { CommentCard } from "../CommentCard/CommentCard";
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Text } from '1_shared/ui/Text/Text';
+import { Comment } from '2_entities/Comment/model/types/comment';
+import cls from './CommentList.module.scss';
+import { CommentCard } from '../CommentCard/CommentCard';
 
 interface CommentListProps {
   className?: string;
@@ -38,7 +38,7 @@ export const CommentList = memo(
             />
           ))
         ) : (
-          <Text text={t("comments absence")} />
+          <Text text={t('comments absence')} />
         )}
       </div>
     );

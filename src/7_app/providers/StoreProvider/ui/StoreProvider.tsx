@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-import { Provider } from "react-redux";
-import { ReducersMapObject } from "@reduxjs/toolkit";
-import { createReduxStore } from "7_app/providers/StoreProvider/config/store";
-import { StateSchema } from "7_app/providers/StoreProvider/config/StateSchema";
+import { ReactNode } from 'react';
+import { Provider } from 'react-redux';
+import { ReducersMapObject } from '@reduxjs/toolkit';
+import { createReduxStore } from '7_app/providers/StoreProvider/config/store';
+import { StateSchema } from '7_app/providers/StoreProvider/config/StateSchema';
 
 interface StoreProviderProps {
   children?: ReactNode;
@@ -17,7 +17,7 @@ export const StoreProvider = (props: StoreProviderProps) => {
     initialState as StateSchema,
     asyncReducers as ReducersMapObject<StateSchema>
   );
-  console.log("StoreProvider", { store });
+  console.log('StoreProvider', { store });
 
   return <Provider store={store}>{children}</Provider>;
 };

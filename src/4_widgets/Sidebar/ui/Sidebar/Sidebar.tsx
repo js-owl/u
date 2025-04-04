@@ -1,14 +1,14 @@
-import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Button, ButtonTheme, ButtonSize } from "1_shared/ui/Button/Button";
-import { ThemeSwitcher } from "4_widgets/ThemeSwitcher";
-import { LangSwithcher } from "4_widgets/LangSwithcher";
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Button, ButtonTheme, ButtonSize } from '1_shared/ui/Button/Button';
+import { ThemeSwitcher } from '4_widgets/ThemeSwitcher';
+import { LangSwithcher } from '4_widgets/LangSwithcher';
 
-import cls from "./Sidebar.module.scss";
-import { SidebarItem } from "./SidebarItem/SidebarItem";
-import { getSidebarItems } from "../../model/selectors/getSidebarItems";
+import cls from './Sidebar.module.scss';
+import { SidebarItem } from './SidebarItem/SidebarItem';
+import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 
 interface SidebarProps {
   className?: string;
@@ -22,10 +22,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
   };
 
   const itemsList = useMemo(
-    () =>
-      sidebarItems.map((item) => (
-        <SidebarItem item={item} collapsed={collapsed} key={item.path} />
-      )),
+    () => sidebarItems.map((item) => (
+      <SidebarItem item={item} collapsed={collapsed} key={item.path} />
+    )),
     [collapsed, sidebarItems]
   );
 
@@ -33,7 +32,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
     <menu
       data-testid="sidebar"
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-        className,
+        className
       ])}
     >
       <Button
@@ -44,7 +43,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         square
         onClick={onToggle}
       >
-        {collapsed ? ">" : "<"}
+        {collapsed ? '>' : '<'}
       </Button>
       <div className={cls.items}>{itemsList}</div>
       <div className={cls.switchers}>

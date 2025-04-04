@@ -1,24 +1,24 @@
-import { HTMLAttributeAnchorTarget, memo } from "react";
-import { useTranslation } from "react-i18next";
+import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { RoutePath } from "1_shared/config/routeConfig/routeConfig";
-import EyeIcon from "1_shared/assets/icons/eye-20-20.svg";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { AppLink } from "1_shared/ui/AppLink/AppLink";
-import { Text } from "1_shared/ui/Text/Text";
-import { Icon } from "1_shared/ui/Icon/Icon";
-import { Card } from "1_shared/ui/Card/Card";
-import { Avatar } from "1_shared/ui/Avatar/Avatar";
-import { Button } from "1_shared/ui/Button/Button";
+import { RoutePath } from '1_shared/config/routeConfig/routeConfig';
+import EyeIcon from '1_shared/assets/icons/eye-20-20.svg';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { AppLink } from '1_shared/ui/AppLink/AppLink';
+import { Text } from '1_shared/ui/Text/Text';
+import { Icon } from '1_shared/ui/Icon/Icon';
+import { Card } from '1_shared/ui/Card/Card';
+import { Avatar } from '1_shared/ui/Avatar/Avatar';
+import { Button } from '1_shared/ui/Button/Button';
 
-import cls from "./ArticleListItem.module.scss";
+import cls from './ArticleListItem.module.scss';
 import {
   Article,
   ArticleBlockType,
   ArticleTextBlock,
-  ArticleView,
-} from "../../model/types/article";
-import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+  ArticleView
+} from '../../model/types/article';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 // ----- imports -----
 
 interface ArticleListItemProps {
@@ -29,9 +29,11 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-  const { className, article, view, target } = props;
+  const {
+    className, article, view, target
+  } = props;
   const { t } = useTranslation();
-  const types = <Text text={article.type.join(", ")} className={cls.types} />;
+  const types = <Text text={article.type.join(', ')} className={cls.types} />;
   const views = (
     <>
       <Text text={String(article.views)} className={cls.views} />
@@ -41,7 +43,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
 
   if (view === ArticleView.BIG) {
     const textBlock = article.blocks.find(
-      (block) => block.type == ArticleBlockType.TEXT
+      (block) => block.type === ArticleBlockType.TEXT
     ) as ArticleTextBlock;
 
     return (
@@ -68,7 +70,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
               to={RoutePath.article_details + article.id}
               target={target}
             >
-              <Button>{t("read more")}</Button>
+              <Button>{t('read more')}</Button>
             </AppLink>
             {views}
           </div>

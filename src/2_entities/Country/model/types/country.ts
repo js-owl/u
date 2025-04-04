@@ -1,4 +1,4 @@
 export enum Country {
-  Russia = "Russia",
-  Belarus = "Belarus",
+  Russia = 'Russia',
+  Belarus = 'Belarus',
 }

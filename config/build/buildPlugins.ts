@@ -1,31 +1,31 @@
-import webpack from "webpack";
-import HTMLWebpackPlugin from "html-webpack-plugin";
-import { BuildOptions } from "./types/config";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import CopyPlugin from "copy-webpack-plugin";
+import webpack from 'webpack';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CopyPlugin from 'copy-webpack-plugin';
+import { BuildOptions } from './types/config';
 
 export function buildPlugins({
   paths,
   isDev,
   apiUrl,
-  project,
+  project
 }: BuildOptions): webpack.WebpackPluginInstance[] {
   const plugins = [
     new webpack.ProgressPlugin(),
     new HTMLWebpackPlugin({ template: paths.html }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].[contenthash].css",
-      chunkFilename: "css/[name].[contenthash].css",
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[name].[contenthash].css'
     }),
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
       __API__: JSON.stringify(apiUrl),
-      __PROJECT__: JSON.stringify(project),
+      __PROJECT__: JSON.stringify(project)
     }),
     new CopyPlugin({
-      patterns: [{ from: paths.locales, to: paths.buildLocales }],
-    }),
+      patterns: [{ from: paths.locales, to: paths.buildLocales }]
+    })
   ];
   if (isDev) {
     plugins.push(new webpack.HotModuleReplacementPlugin());

@@ -1,10 +1,10 @@
-import { memo, useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import cls from "./ArticleSortSelector.module.scss";
-import { Select, SelectOption } from "1_shared/ui/Select/Select";
-import { ArticleSortField } from "2_entities/Article/model/types/article";
-import { SortOrder } from "1_shared/types";
+import { memo, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Select, SelectOption } from '1_shared/ui/Select/Select';
+import { ArticleSortField } from '2_entities/Article/model/types/article';
+import { SortOrder } from '1_shared/types';
+import cls from './ArticleSortSelector.module.scss';
 
 interface ArticleSortSelectorProps {
   className?: string;
@@ -20,23 +20,23 @@ export const ArticleSortSelector = memo(
     sort,
     order,
     onChangeSort,
-    onChangeOrder,
+    onChangeOrder
   }: ArticleSortSelectorProps) => {
     const { t } = useTranslation();
 
     const sortFieldOptions = useMemo<SelectOption[]>(
       () => [
-        { value: ArticleSortField.CREATED, content: t("created date") },
-        { value: ArticleSortField.TITLE, content: t("title") },
-        { value: ArticleSortField.VIEWS, content: t("views") },
+        { value: ArticleSortField.CREATED, content: t('created date') },
+        { value: ArticleSortField.TITLE, content: t('title') },
+        { value: ArticleSortField.VIEWS, content: t('views') }
       ],
       [t]
     );
 
     const orderOptions = useMemo<SelectOption[]>(
       () => [
-        { value: "asc", content: t("ascending") },
-        { value: "desc", content: t("descending") },
+        { value: 'asc', content: t('ascending') },
+        { value: 'desc', content: t('descending') }
       ],
       [t]
     );
@@ -59,13 +59,13 @@ export const ArticleSortSelector = memo(
       <div className={classNames(cls.ArticleSortSelector, {}, [className])}>
         <Select
           options={sortFieldOptions}
-          label={t("sort by")}
+          label={t('sort by')}
           value={sort}
           onChange={changeSortHandler}
         />
         <Select
           options={orderOptions}
-          label={t("by")}
+          label={t('by')}
           value={order}
           onChange={changeOrderHandler}
           className={cls.order}

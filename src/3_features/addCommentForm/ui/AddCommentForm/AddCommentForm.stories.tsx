@@ -1,14 +1,14 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { StoreDecorator } from "1_shared/config/storybook/StoreDecorator/StoreDecorator";
-import AddCommentForm from "./AddCommentForm";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { StoreDecorator } from '1_shared/config/storybook/StoreDecorator/StoreDecorator';
+import AddCommentForm from './AddCommentForm';
 
 export default {
-  title: "features/AddCommentForm",
+  title: 'features/AddCommentForm',
   component: AddCommentForm,
   argTypes: {
-    backgroundColor: { control: "color" },
-  },
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof AddCommentForm>;
 
 const Template: ComponentStory<typeof AddCommentForm> = (args) => (
@@ -17,6 +17,6 @@ const Template: ComponentStory<typeof AddCommentForm> = (args) => (
 
 export const Normal = Template.bind({});
 Normal.args = {
-  onSendComment: action("onSendComment"),
+  onSendComment: action('onSendComment')
 };
 Normal.decorators = [StoreDecorator({})];

@@ -1,33 +1,31 @@
 import {
   createEntityAdapter,
   createSlice,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-import { Article } from "2_entities/Article";
-import { StateSchema } from "7_app/providers/StoreProvider";
-import { ArticleDetailsRecommendationsSchema } from "../types/ArticleDetailsRecommendationsSchema";
-import { fetchArticleRecommendations } from "../services/fetchArticleRecommendations/fetchArticleRecommendations";
+  PayloadAction
+} from '@reduxjs/toolkit';
+import { Article } from '2_entities/Article';
+import { StateSchema } from '7_app/providers/StoreProvider';
+import { ArticleDetailsRecommendationsSchema } from '../types/ArticleDetailsRecommendationsSchema';
+import { fetchArticleRecommendations } from '../services/fetchArticleRecommendations/fetchArticleRecommendations';
 
 const recommendationsAdapter = createEntityAdapter<Article>({
-  selectId: (article) => article.id,
+  selectId: (article) => article.id
 });
 
-export const getArticleRecomendations =
-  recommendationsAdapter.getSelectors<StateSchema>(
-    (state) =>
-      state.articleDetailPage?.recommendations ||
-      recommendationsAdapter.getInitialState()
-  );
+export const getArticleRecomendations = recommendationsAdapter.getSelectors<StateSchema>(
+  (state) => state.articleDetailPage?.recommendations
+      || recommendationsAdapter.getInitialState()
+);
 
 const articleDetailsPageRecomendationsSlice = createSlice({
-  name: "articleDetailsPageRecomendationsSlice",
+  name: 'articleDetailsPageRecomendationsSlice',
   initialState:
     recommendationsAdapter.getInitialState<ArticleDetailsRecommendationsSchema>(
       {
         isLoading: false,
         ids: [],
         entities: {},
-        error: undefined,
+        error: undefined
       }
     ),
   reducers: {},
@@ -48,8 +46,7 @@ const articleDetailsPageRecomendationsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
-  },
+  }
 });
 
-export const { reducer: articleDetailsPageRecomendationsReducer } =
-  articleDetailsPageRecomendationsSlice;
+export const { reducer: articleDetailsPageRecomendationsReducer } = articleDetailsPageRecomendationsSlice;

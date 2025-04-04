@@ -1,9 +1,9 @@
-import { memo, useCallback } from "react";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Card } from "1_shared/ui/Card/Card";
-import cls from "./ArticleListItem.module.scss";
-import { ArticleView } from "../../model/types/article";
-import { Skeleton } from "1_shared/ui/Skeleton/Skeleton";
+import { memo, useCallback } from 'react';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Card } from '1_shared/ui/Card/Card';
+import { Skeleton } from '1_shared/ui/Skeleton/Skeleton';
+import cls from './ArticleListItem.module.scss';
+import { ArticleView } from '../../model/types/article';
 // ----- imports -----
 
 interface ArticleListItemSkeletonProps {
@@ -20,12 +20,12 @@ export const ArticleListItemSkeleton = memo(
         <div
           className={classNames(cls.ArticleListItem, {}, [
             className,
-            cls[view],
+            cls[view]
           ])}
         >
           <Card className={cls.card}>
             <div className={cls.header}>
-              <Skeleton width={30} height={30} border={"50%"} />
+              <Skeleton width={30} height={30} border="50%" />
               <Skeleton width={150} height={16} className={cls.username} />
               <Skeleton width={150} height={16} className={cls.date} />
             </div>

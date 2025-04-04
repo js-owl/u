@@ -1,15 +1,15 @@
 /* eslint-disable object-curly-newline */
-import { classNames, Mods } from "1_shared/libs/classNames/classNames";
+import { classNames, Mods } from '1_shared/libs/classNames/classNames';
 import React, {
   MutableRefObject,
   ReactNode,
   useCallback,
   useEffect,
   useRef,
-  useState,
-} from "react";
-import { Portal } from "1_shared/ui/Portal/Portal";
-import cls from "./Modal.module.scss";
+  useState
+} from 'react';
+import { Portal } from '1_shared/ui/Portal/Portal';
+import cls from './Modal.module.scss';
 
 interface ModalProps {
   className?: string;
@@ -26,7 +26,7 @@ export const Modal = ({
   children,
   isOpen,
   onClose,
-  lazy,
+  lazy
 }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -52,7 +52,7 @@ export const Modal = ({
   };
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         closeHandler();
       }
     },
@@ -60,16 +60,16 @@ export const Modal = ({
   );
   useEffect(() => {
     if (isOpen) {
-      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener('keydown', onKeyDown);
     }
     return () => {
       clearTimeout(timerRef.current);
-      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
   const mods: Mods = {
     [cls.opened]: isOpen,
-    [cls.isClosing]: isClosing,
+    [cls.isClosing]: isClosing
   };
 
   if (lazy && !isMounted) return null;

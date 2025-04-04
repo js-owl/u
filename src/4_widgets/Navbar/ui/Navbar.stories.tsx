@@ -1,18 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ThemeDecorator } from "1_shared/config/storybook/ThemeDecorator/ThemeDecorator";
-import { StoreDecorator } from "1_shared/config/storybook/StoreDecorator/StoreDecorator";
-import { Theme } from "7_app/providers/ThemeProvider";
-import { Navbar } from "./Navbar";
+import { ThemeDecorator } from '1_shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { StoreDecorator } from '1_shared/config/storybook/StoreDecorator/StoreDecorator';
+import { Theme } from '7_app/providers/ThemeProvider';
+import { Navbar } from './Navbar';
 
 export default {
-  title: "widget/Navbar",
+  title: 'widget/Navbar',
   component: Navbar,
   argTypes: {
-    backgroundColor: { control: "color" },
-  },
+    backgroundColor: { control: 'color' }
+  }
 } as ComponentMeta<typeof Navbar>;
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
@@ -29,6 +29,6 @@ export const AuthNavbar = Template.bind({});
 AuthNavbar.args = {};
 AuthNavbar.decorators = [
   StoreDecorator({
-    user: { authData: {} },
-  }),
+    user: { authData: {} }
+  })
 ];

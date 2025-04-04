@@ -1,38 +1,38 @@
-import { memo, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { memo, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-import { classNames } from "1_shared/libs/classNames/classNames";
+import { classNames } from '1_shared/libs/classNames/classNames';
 import {
   DynamicModuleLoader,
-  ReducersList,
-} from "1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader";
-import { useInitialEffect } from "1_shared/libs/hooks/useInitialEffect/useInitialEffect";
-import { Button } from "1_shared/ui/Button/Button";
-import { Text, TextSize } from "1_shared/ui/Text/Text";
+  ReducersList
+} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { Button } from '1_shared/ui/Button/Button';
+import { Text, TextSize } from '1_shared/ui/Text/Text';
 
-import { ArticleDetails, ArticleList } from "2_entities/Article";
-import { CommentList } from "2_entities/Comment";
-import AddCommentForm from "3_features/addCommentForm/ui/AddCommentForm/AddCommentForm";
-import { Page } from "4_widgets/Page/Page";
+import { ArticleDetails, ArticleList } from '2_entities/Article';
+import { CommentList } from '2_entities/Comment';
+import AddCommentForm from '3_features/addCommentForm/ui/AddCommentForm/AddCommentForm';
+import { Page } from '4_widgets/Page/Page';
 
-import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
-import { getArticleRecommendationsIsLoading } from "../../model/selectors/recommendations";
-import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
-import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
-import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
+import { articleDetailsPageReducer } from '5_p/ArticleDetailsPage/model/slices';
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
+import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import {
   articleDetailsCommentsReducer,
-  getArticleComments,
-} from "../../model/slices/ArticleDetailsCommentsSlice";
+  getArticleComments
+} from '../../model/slices/ArticleDetailsCommentsSlice';
 import {
   articleDetailsPageRecomendationsReducer,
-  getArticleRecomendations,
-} from "../../model/slices/articleDetailsPageRecomendationsSlice";
-import cls from "./ArticleDetailsPage.module.scss";
-import { articleDetailsPageReducer } from "5_p/ArticleDetailsPage/model/slices";
-import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
+  getArticleRecomendations
+} from '../../model/slices/articleDetailsPageRecomendationsSlice';
+import cls from './ArticleDetailsPage.module.scss';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -40,11 +40,11 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-  articleDetailPage: articleDetailsPageReducer,
+  articleDetailPage: articleDetailsPageReducer
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
-  const { t } = useTranslation("article-details");
+  const { t } = useTranslation('article-details');
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const comments = useSelector(getArticleComments.selectAll);
@@ -59,14 +59,17 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     dispatch(fetchArticleRecommendations());
   });
 
-  const onSendComment = useCallback((text: string) => {
-    dispatch(addCommentForArticle(text));
-  }, []);
+  const onSendComment = useCallback(
+    (text: string) => {
+      dispatch(addCommentForArticle(text));
+    },
+    [dispatch]
+  );
 
   if (!id) {
     return (
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        {t("article not found")}
+        {t('article not found')}
       </Page>
     );
   }
@@ -79,7 +82,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <Text
           size={TextSize.L}
           className={cls.commentTitle}
-          title={t("recommend")}
+          title={t('recommend')}
         />
         <ArticleList
           articles={recommendations}
@@ -90,7 +93,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <Text
           size={TextSize.L}
           className={cls.commentTitle}
-          title={t("comments")}
+          title={t('comments')}
         />
         <AddCommentForm onSendComment={onSendComment} />
         <CommentList isLoading={commentsIsLoading} comments={comments} />

@@ -1,7 +1,7 @@
-import { memo, ReactNode, useCallback } from "react";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import { Card, CardTheme } from "../Card/Card";
-import cls from "./Tabs.module.scss";
+import { memo, ReactNode, useCallback } from 'react';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import { Card, CardTheme } from '../Card/Card';
+import cls from './Tabs.module.scss';
 
 export interface TabItem {
   value: string;
@@ -16,12 +16,17 @@ interface TabsProps {
 }
 
 export const Tabs = memo(
-  ({ className, tabs, value, onTabClick }: TabsProps) => {
-    const clickHandle = useCallback((tab: TabItem) => {
-      return () => {
-        onTabClick(tab);
-      };
-    }, []);
+  ({
+    className, tabs, value, onTabClick
+  }: TabsProps) => {
+    const clickHandle = useCallback(
+      (tab: TabItem) => {
+        return () => {
+          onTabClick(tab);
+        };
+      },
+      [onTabClick]
+    );
 
     return (
       <div className={classNames(cls.Tabs, {}, [className])}>

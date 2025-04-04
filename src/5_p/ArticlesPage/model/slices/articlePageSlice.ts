@@ -1,23 +1,23 @@
 import {
   createEntityAdapter,
   createSlice,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from "1_shared/const/localStorage";
-import { SortOrder } from "1_shared/types";
+  PayloadAction
+} from '@reduxjs/toolkit';
+import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '1_shared/const/localStorage';
+import { SortOrder } from '1_shared/types';
 
 import {
   Article,
   ArticleView,
   ArticleSortField,
-  ArticleType,
-} from "2_entities/Article";
-import { StateSchema } from "7_app/providers/StoreProvider";
-import { fetchArticlesList } from "../serviices/fetchArticlesList/fetchArticlesList";
-import { ArticlesPageSchema } from "../types/articlePageSchema";
+  ArticleType
+} from '2_entities/Article';
+import { StateSchema } from '7_app/providers/StoreProvider';
+import { fetchArticlesList } from '../serviices/fetchArticlesList/fetchArticlesList';
+import { ArticlesPageSchema } from '../types/articlePageSchema';
 
 const articlesAdapter = createEntityAdapter<Article>({
-  selectId: (article) => article.id,
+  selectId: (article) => article.id
 });
 
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
@@ -25,7 +25,7 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
 );
 
 const articlesPageSlice = createSlice({
-  name: "articlePageSlice",
+  name: 'articlePageSlice',
   initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
     _inited: false,
     isLoading: false,
@@ -37,9 +37,9 @@ const articlesPageSlice = createSlice({
     hasMore: true,
     limit: 9,
     sort: ArticleSortField.CREATED,
-    search: "",
-    order: "asc",
-    type: ArticleType.ALL,
+    search: '',
+    order: 'asc',
+    type: ArticleType.ALL
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticleView>) => {
@@ -68,7 +68,7 @@ const articlesPageSlice = createSlice({
       state.view = view;
       state.limit = view === ArticleView.BIG ? 4 : 9;
       state._inited = true;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -93,8 +93,7 @@ const articlesPageSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
-  },
+  }
 });
 
-export const { reducer: articlesPageReducer, actions: articlesPageActions } =
-  articlesPageSlice;
+export const { reducer: articlesPageReducer, actions: articlesPageActions } = articlesPageSlice;

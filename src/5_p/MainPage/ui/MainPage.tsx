@@ -1,13 +1,13 @@
-import { useTranslation } from "react-i18next";
-import { Page } from "4_widgets/Page/Page";
-import { Counter } from "2_entities/Counter";
+import { useTranslation } from 'react-i18next';
+import { Page } from '4_widgets/Page/Page';
+import { Counter } from '2_entities/Counter';
 
-console.log("|-MainPage");
+console.log('|-MainPage');
 const MainPage = () => {
   const { t } = useTranslation();
   return (
     <Page>
-      {t("main page")}
+      {t('main page')}
       <Counter />
     </Page>
   );

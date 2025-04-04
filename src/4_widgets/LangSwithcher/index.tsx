@@ -1,3 +1,3 @@
-import { LangSwithcher } from "./ui/LangSwithcher";
+import { LangSwithcher } from './ui/LangSwithcher';
 
 export { LangSwithcher };

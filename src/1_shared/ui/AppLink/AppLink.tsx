@@ -1,12 +1,12 @@
-import { memo, ReactNode } from "react";
-import { Link, LinkProps } from "react-router-dom";
-import { classNames } from "1_shared/libs/classNames/classNames";
-import cls from "./AppLink.module.scss";
+import { memo, ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
+import { classNames } from '1_shared/libs/classNames/classNames';
+import cls from './AppLink.module.scss';
 
 export enum AppLinkTheme {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  RED = "red",
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  RED = 'red',
 }
 interface AppLinkProps extends LinkProps {
   className?: string;
