@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '1_shared/libs/classNames/classNames';
-import {
-  DynamicModuleLoader,
-  ReducersList
-} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
 import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { Button } from '1_shared/ui/Button/Button';
 import { Text, TextSize } from '1_shared/ui/Text/Text';
+import { VStack } from '1_shared/ui/Stack';
 
 import { ArticleDetails, ArticleList } from '2_entities/Article';
 import { CommentList } from '2_entities/Comment';
@@ -23,10 +21,7 @@ import { getArticleRecommendationsIsLoading } from '../../model/selectors/recomm
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import {
-  articleDetailsCommentsReducer,
-  getArticleComments
-} from '../../model/slices/ArticleDetailsCommentsSlice';
+import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/ArticleDetailsCommentsSlice';
 import {
   articleDetailsPageRecomendationsReducer,
   getArticleRecomendations
@@ -50,9 +45,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const comments = useSelector(getArticleComments.selectAll);
   const recommendations = useSelector(getArticleRecomendations.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-  const recommendationsIsLoading = useSelector(
-    getArticleRecommendationsIsLoading
-  );
+  const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
@@ -67,36 +60,26 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   );
 
   if (!id) {
-    return (
-      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        {t('article not found')}
-      </Page>
-    );
+    return <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>{t('article not found')}</Page>;
   }
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-        <ArticleDetailsPageHeader />
-        <ArticleDetails id={id} />
-        <Text
-          size={TextSize.L}
-          className={cls.commentTitle}
-          title={t('recommend')}
-        />
-        <ArticleList
-          articles={recommendations}
-          isLoading={recommendationsIsLoading}
-          className={cls.recommendations}
-          target="_blank"
-        />
-        <Text
-          size={TextSize.L}
-          className={cls.commentTitle}
-          title={t('comments')}
-        />
-        <AddCommentForm onSendComment={onSendComment} />
-        <CommentList isLoading={commentsIsLoading} comments={comments} />
+        <VStack gap="16" max>
+          <ArticleDetailsPageHeader />
+          <ArticleDetails id={id} />
+          <Text size={TextSize.L} className={cls.commentTitle} title={t('recommend')} />
+          <ArticleList
+            articles={recommendations}
+            isLoading={recommendationsIsLoading}
+            className={cls.recommendations}
+            target="_blank"
+          />
+          <Text size={TextSize.L} className={cls.commentTitle} title={t('comments')} />
+          <AddCommentForm onSendComment={onSendComment} />
+          <CommentList isLoading={commentsIsLoading} comments={comments} />
+        </VStack>
       </Page>
     </DynamicModuleLoader>
   );
