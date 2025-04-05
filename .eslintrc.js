@@ -23,7 +23,7 @@ module.exports = {
       'error',
       {
         markupOnly: true,
-        ignoreAttribute: ['data-testid', 'to', 'target']
+        ignoreAttribute: ['data-testid', 'to', 'target', 'justify', 'align', 'direction', 'gap']
       }
     ],
     'max-len': ['error', { ignoreComments: true, code: 125 }],
@@ -51,7 +51,8 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
     'no-console': 'off',
-    'object-curly-newline': 'off'
+    'object-curly-newline': 'off',
+    'linebreak-style': ['error', 'windows']
   },
   globals: {
     __IS_DEV__: true,
