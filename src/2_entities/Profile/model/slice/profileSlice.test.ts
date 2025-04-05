@@ -1,12 +1,8 @@
-import {
-  profileActions,
-  profileReducer,
-  ProfileShema,
-  updateProfileData,
-  ValidateProfileError
-} from '2_entities/Profile';
 import { Country } from '2_entities/Country';
 import { Currency } from '2_entities/Currency';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { ProfileShema, ValidateProfileError } from '../types/profile';
+import { profileActions, profileReducer } from './profileSlice';
 
 const data = {
   username: 'admin',
@@ -21,17 +17,13 @@ const data = {
 describe('profileSlice.test', () => {
   test('test set readonly', () => {
     const state: DeepPartial<ProfileShema> = { readonly: false };
-    expect(
-      profileReducer(state as ProfileShema, profileActions.setReadonly(true))
-    ).toEqual({ readonly: true });
+    expect(profileReducer(state as ProfileShema, profileActions.setReadonly(true))).toEqual({ readonly: true });
   });
 
   test('test cancel edit', () => {
     const state: DeepPartial<ProfileShema> = { data, form: { username: '' } };
 
-    expect(
-      profileReducer(state as ProfileShema, profileActions.cancelEdit())
-    ).toEqual({
+    expect(profileReducer(state as ProfileShema, profileActions.cancelEdit())).toEqual({
       readonly: true,
       validateErrors: undefined,
       data,
@@ -60,9 +52,7 @@ describe('profileSlice.test', () => {
       validateError: [ValidateProfileError.SERVER_ERROR]
     };
 
-    expect(
-      profileReducer(state as ProfileShema, updateProfileData.pending)
-    ).toEqual({
+    expect(profileReducer(state as ProfileShema, updateProfileData.pending)).toEqual({
       isLoading: true,
       validateErrors: undefined
     });
@@ -73,12 +63,7 @@ describe('profileSlice.test', () => {
       isLoading: true
     };
 
-    expect(
-      profileReducer(
-        state as ProfileShema,
-        updateProfileData.fulfilled(data, '')
-      )
-    ).toEqual({
+    expect(profileReducer(state as ProfileShema, updateProfileData.fulfilled(data, ''))).toEqual({
       isLoading: false,
       validateErrors: undefined,
       readonly: true,

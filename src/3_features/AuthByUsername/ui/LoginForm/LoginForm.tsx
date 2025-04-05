@@ -1,24 +1,20 @@
-import {
-  memo, useCallback, useEffect, useState
-} from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '1_shared/libs/classNames/classNames';
-import {
-  DynamicModuleLoader,
-  ReducersList
-} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
 import { Text, TextTheme } from '1_shared/ui/Text/Text';
 import { Input } from '1_shared/ui/Input/Input';
 import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { getLoginUsername } from '3_features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername';
-import { getLoginPassword } from '3_features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword';
-import { getLoginIsLoading } from '3_features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading';
-import { getLoginError } from '3_features/AuthByUsername/model/selectors/getLoginError/getLoginError';
-import cls from './LoginForm.module.scss';
+
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import cls from './LoginForm.module.scss';
 
 const initialReducers: ReducersList = {
   loginForm: loginReducer
@@ -61,9 +57,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
       <div className={classNames(cls.LoginForm, {}, [className])}>
         <Text title={t('auth form')} />
-        {error && (
-          <Text text={t('wrong username/password')} theme={TextTheme.ERROR} />
-        )}
+        {error && <Text text={t('wrong username/password')} theme={TextTheme.ERROR} />}
         <Input
           autofocus
           type="text"
@@ -79,12 +73,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
           onChange={onChangePassword}
           value={password}
         />
-        <Button
-          theme={ButtonTheme.OUTLINE}
-          className={cls.loginBtn}
-          onClick={onLoginClick}
-          disabled={isLoading}
-        >
+        <Button theme={ButtonTheme.OUTLINE} className={cls.loginBtn} onClick={onLoginClick} disabled={isLoading}>
           {t('enter')}
         </Button>
       </div>

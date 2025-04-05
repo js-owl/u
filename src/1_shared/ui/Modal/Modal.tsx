@@ -1,14 +1,6 @@
-/* eslint-disable object-curly-newline */
+import React, { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { classNames, Mods } from '1_shared/libs/classNames/classNames';
-import React, {
-  MutableRefObject,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
-import { Portal } from '1_shared/ui/Portal/Portal';
+import { Portal } from '../Portal/Portal';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
@@ -21,13 +13,7 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = ({
-  className,
-  children,
-  isOpen,
-  onClose,
-  lazy
-}: ModalProps) => {
+export const Modal = ({ className, children, isOpen, onClose, lazy }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;

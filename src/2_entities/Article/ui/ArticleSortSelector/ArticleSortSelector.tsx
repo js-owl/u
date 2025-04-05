@@ -2,8 +2,8 @@ import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '1_shared/libs/classNames/classNames';
 import { Select, SelectOption } from '1_shared/ui/Select/Select';
-import { ArticleSortField } from '2_entities/Article/model/types/article';
 import { SortOrder } from '1_shared/types';
+import { ArticleSortField } from '../../model/types/article';
 import cls from './ArticleSortSelector.module.scss';
 
 interface ArticleSortSelectorProps {
@@ -15,13 +15,7 @@ interface ArticleSortSelectorProps {
 }
 
 export const ArticleSortSelector = memo(
-  ({
-    className,
-    sort,
-    order,
-    onChangeSort,
-    onChangeOrder
-  }: ArticleSortSelectorProps) => {
+  ({ className, sort, order, onChangeSort, onChangeOrder }: ArticleSortSelectorProps) => {
     const { t } = useTranslation();
 
     const sortFieldOptions = useMemo<SelectOption[]>(
@@ -57,19 +51,8 @@ export const ArticleSortSelector = memo(
 
     return (
       <div className={classNames(cls.ArticleSortSelector, {}, [className])}>
-        <Select
-          options={sortFieldOptions}
-          label={t('sort by')}
-          value={sort}
-          onChange={changeSortHandler}
-        />
-        <Select
-          options={orderOptions}
-          label={t('by')}
-          value={order}
-          onChange={changeOrderHandler}
-          className={cls.order}
-        />
+        <Select options={sortFieldOptions} label={t('sort by')} value={sort} onChange={changeSortHandler} />
+        <Select options={orderOptions} label={t('by')} value={order} onChange={changeOrderHandler} className={cls.order} />
       </div>
     );
   }

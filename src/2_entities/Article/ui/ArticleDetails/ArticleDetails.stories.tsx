@@ -1,12 +1,6 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
 import { StoreDecorator } from '1_shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Article } from '2_entities/Article';
-import {
-  ArticleBlockType,
-  ArticleType
-} from '2_entities/Article/model/types/article';
+import { ArticleBlockType, ArticleType, Article } from '../../model/types/article';
 import { ArticleDetails } from './ArticleDetails';
 
 export default {
@@ -17,9 +11,7 @@ export default {
   }
 } as ComponentMeta<typeof ArticleDetails>;
 
-const Template: ComponentStory<typeof ArticleDetails> = (args) => (
-  <ArticleDetails {...args} />
-);
+const Template: ComponentStory<typeof ArticleDetails> = (args) => <ArticleDetails {...args} />;
 
 const article: Article = {
   id: '1',

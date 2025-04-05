@@ -13,18 +13,26 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'i18next',
-    'react-hooks'
-    // 'ulbi-tv-plugin',
-  ],
+  plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'sowl-plugin'],
   rules: {
     'react/jsx-indent': [2, 2],
     'react/jsx-indent-props': [2, 2],
     indent: [2, 2],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+    'i18next/no-literal-string': [
+      'error',
+      {
+        markupOnly: true,
+        ignoreAttribute: ['data-testid', 'to', 'target']
+      }
+    ],
+    'max-len': ['error', { ignoreComments: true, code: 125 }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
+    quotes: [2, 'single', { avoidEscape: true }],
+    'comma-dangle': ['error', 'never'],
+    'sowl-plugin/path-checker': 'error',
+
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
@@ -36,26 +44,14 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
-    'i18next/no-literal-string': [
-      'error',
-      {
-        markupOnly: true,
-        ignoreAttribute: ['data-testid', 'to', 'target']
-      }
-    ],
-    'max-len': ['error', { ignoreComments: true, code: 125 }],
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
-    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
     'no-param-reassign': 'off',
     'no-undef': 'off',
     'react/no-array-index-key': 'off',
     'arrow-body-style': 'off',
-    quotes: [2, 'single', { avoidEscape: true }],
     'no-console': 'off',
-    'comma-dangle': ['error', 'never']
-    // 'ulbi-tv-plugin/path-checker': 'error',
+    'object-curly-newline': 'off'
   },
   globals: {
     __IS_DEV__: true,
