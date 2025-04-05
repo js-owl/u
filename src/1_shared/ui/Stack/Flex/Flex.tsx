@@ -38,17 +38,19 @@ export interface FlexProps {
   justify?: FlexJustify;
   align?: FlexAlign;
   direction?: FlexDirection;
+  gap?: FlexGap;
 }
 
-const classes = [
-  className,
-  justifyClasses[justify],
-  alignClasses[justify],
-  directionClasses[direction],
-  gap && gapClasses[gap]
-];
-
 export const Flex = memo((props: FlexProps) => {
-  const { className, children, justify = 'start', align = 'center', direction = 'row' } = props;
-  return <div className={classNames(cls.Flex, {}, [classes])}>{children}</div>;
+  const { className, children, justify = 'start', align = 'center', direction = 'row', gap } = props;
+
+  const classes = [
+    className,
+    justifyClasses[justify],
+    alignClasses[align],
+    directionClasses[direction],
+    gap && gapClasses[gap]
+  ];
+
+  return <div className={classNames(cls.Flex, {}, classes)}>{children}</div>;
 });
