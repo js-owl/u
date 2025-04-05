@@ -1,5 +1,5 @@
 import { memo, ReactNode } from 'react';
-import { classNames } from '1_shared/libs/classNames/classNames';
+import { classNames, Mods } from '1_shared/libs/classNames/classNames';
 import cls from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
@@ -39,10 +39,11 @@ export interface FlexProps {
   align?: FlexAlign;
   direction?: FlexDirection;
   gap?: FlexGap;
+  max?: boolean;
 }
 
 export const Flex = memo((props: FlexProps) => {
-  const { className, children, justify = 'start', align = 'center', direction = 'row', gap } = props;
+  const { className, children, justify = 'start', align = 'center', direction = 'row', gap, max } = props;
 
   const classes = [
     className,
@@ -52,5 +53,7 @@ export const Flex = memo((props: FlexProps) => {
     gap && gapClasses[gap]
   ];
 
-  return <div className={classNames(cls.Flex, {}, classes)}>{children}</div>;
+  const mods: Mods = { [cls.max]: max };
+
+  return <div className={classNames(cls.Flex, mods, classes)}>{children}</div>;
 });

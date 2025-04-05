@@ -32,6 +32,7 @@ module.exports = {
     quotes: [2, 'single', { avoidEscape: true }],
     'comma-dangle': ['error', 'never'],
     'sowl-plugin/path-checker': 'error',
+    'linebreak-style': ['error', 'windows'],
 
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -52,7 +53,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'no-console': 'off',
     'object-curly-newline': 'off',
-    'linebreak-style': ['error', 'windows']
+    'operator-linebreak': 'off'
   },
   globals: {
     __IS_DEV__: true,

@@ -4,13 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
-import {
-  DynamicModuleLoader,
-  ReducersList
-} from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
 import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { Text, TextTheme } from '1_shared/ui/Text/Text';
-import { Page } from '4_widgets/Page/Page';
+import { VStack } from '1_shared/ui/Stack/VStack/VStack';
 
 import {
   fetchProfileData,
@@ -27,6 +24,7 @@ import {
 } from '2_entities/Profile';
 import { Currency } from '2_entities/Currency';
 import { Country } from '2_entities/Country';
+import { Page } from '4_widgets/Page/Page';
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
@@ -51,9 +49,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     [ValidateProfileError.INCORRECT_AGE]: t('error'),
     [ValidateProfileError.INCORRECT_COUNTRY]: t('error'),
     [ValidateProfileError.NO_DATA]: t('error'),
-    [ValidateProfileError.INCORRECT_USER_DATA]: t(
-      'name and lastname are needed'
-    )
+    [ValidateProfileError.INCORRECT_USER_DATA]: t('name and lastname are needed')
   };
 
   useInitialEffect(() => {
@@ -119,29 +115,25 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Page>
-        <ProfilePageHeader />
-        {validateErrors?.length
-          && validateErrors.map((err) => (
-            <Text
-              key={err}
-              theme={TextTheme.ERROR}
-              text={validateErrorTranslate[err]}
-            />
-          ))}
-        <ProfileCard
-          data={formData}
-          isLoading={isLoading}
-          error={error}
-          readonly={readonly}
-          onChangeFirstName={onChangeFirstName}
-          onChangeLastName={onChangeLastName}
-          onChangeAge={onChangeAge}
-          onChangeCity={onChangeCity}
-          onChangeUsername={onChangeUsername}
-          onChangeAvatar={onChangeAvatar}
-          onChangeCurrency={onChangeCurrency}
-          onChangeCountry={onChangeCountry}
-        />
+        <VStack gap="16" max>
+          <ProfilePageHeader />
+          {validateErrors?.length &&
+            validateErrors.map((err) => <Text key={err} theme={TextTheme.ERROR} text={validateErrorTranslate[err]} />)}
+          <ProfileCard
+            data={formData}
+            isLoading={isLoading}
+            error={error}
+            readonly={readonly}
+            onChangeFirstName={onChangeFirstName}
+            onChangeLastName={onChangeLastName}
+            onChangeAge={onChangeAge}
+            onChangeCity={onChangeCity}
+            onChangeUsername={onChangeUsername}
+            onChangeAvatar={onChangeAvatar}
+            onChangeCurrency={onChangeCurrency}
+            onChangeCountry={onChangeCountry}
+          />
+        </VStack>
       </Page>
     </DynamicModuleLoader>
   );
