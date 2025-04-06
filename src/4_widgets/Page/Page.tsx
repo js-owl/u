@@ -1,6 +1,4 @@
-import {
-  memo, MutableRefObject, ReactNode, UIEvent, useRef
-} from 'react';
+import { memo, MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -49,14 +47,9 @@ export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
   }, 500);
 
   return (
-    <section
-      ref={wrapperRef}
-      onScroll={onScroll}
-      className={classNames(cls.Page, {}, [className])}
-      id={PAGE_ID}
-    >
+    <main ref={wrapperRef} onScroll={onScroll} className={classNames(cls.Page, {}, [className])} id={PAGE_ID}>
       {children}
       {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
-    </section>
+    </main>
   );
 });
