@@ -11,10 +11,6 @@ const MainPage = () => {
     <Page>
       {t('main page')}
       <Counter />
-      <HStack>
-        <div>asd</div>
-        <ListBox />
-      </HStack>
     </Page>
   );
 };
