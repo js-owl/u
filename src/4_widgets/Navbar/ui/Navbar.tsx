@@ -8,6 +8,8 @@ import { classNames } from '1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
 import { Text, TextTheme } from '1_shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
+import { Dropdown } from '1_shared/ui/Dropdown/Dropdown';
+import { Avatar } from '1_shared/ui/Avatar/Avatar';
 
 import { getUserAuthData, userActions } from '2_entities/User';
 import { LoginModal } from '3_features/AuthByUsername';
@@ -35,40 +37,28 @@ export const Navbar = ({ className }: NavbarProps) => {
   if (authData) {
     return (
       <header className={classNames(cls.Navbar, {}, [className])}>
-        <Text
-          className={cls.appName}
-          title={t('Alex')}
-          theme={TextTheme.INVERTED}
-        />
-        <AppLink
-          to={RoutePath.article_create}
-          theme={AppLinkTheme.SECONDARY}
-          className={cls.createBtn}
-        >
+        <Text className={cls.appName} title={t('Alex')} theme={TextTheme.INVERTED} />
+        <AppLink to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY} className={cls.createBtn}>
           {t('create article')}
         </AppLink>
-        <Button
-          theme={ButtonTheme.CLEAR_INVERTED}
-          className={cls.links}
-          onClick={onLogout}
-        >
-          {t('logout')}
-        </Button>
+        <Dropdown
+          direction="bottom left"
+          className={cls.dropdown}
+          items={[
+            { content: t('profile'), href: RoutePath.profile + authData.id },
+            { content: t('logout'), onClick: onLogout }
+          ]}
+          trigger={<Avatar size={30} src={authData.avatar} />}
+        />
       </header>
     );
   }
   return (
     <header className={classNames(cls.Navbar, {}, [className])}>
-      <Button
-        theme={ButtonTheme.CLEAR_INVERTED}
-        className={cls.links}
-        onClick={onShowModal}
-      >
+      <Button theme={ButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
         {t('enter')}
       </Button>
-      {isAuthModal && (
-        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-      )}
+      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
     </header>
   );
 };
