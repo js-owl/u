@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '1_shared/libs/classNames/classNames';
