@@ -53,7 +53,8 @@ module.exports = {
     'arrow-body-style': 'off',
     'no-console': 'off',
     'object-curly-newline': 'off',
-    'operator-linebreak': 'off'
+    'operator-linebreak': 'off',
+    'implicit-arrow-linebreak': 'off'
   },
   globals: {
     __IS_DEV__: true,

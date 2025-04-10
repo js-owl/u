@@ -1,11 +1,7 @@
 import { CombinedState } from 'redux';
-import {
-  AnyAction,
-  EnhancedStore,
-  Reducer,
-  ReducersMapObject
-} from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+import { rtkApi } from '1_shared/api/rtkApi';
 
 import { CounterSchema } from '2_entities/Counter';
 import { UserSchema } from '2_entities/User';
@@ -21,6 +17,7 @@ export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
   ui: UISchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // async
   loginForm?: LoginSchema;

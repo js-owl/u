@@ -12,22 +12,17 @@ import { VStack } from '1_shared/ui/Stack';
 
 import { ArticleDetails, ArticleList } from '2_entities/Article';
 import { CommentList } from '2_entities/Comment';
+import { ArticleRecommendationsList } from '3_features/articleRecommendationsList';
 import AddCommentForm from '3_features/addCommentForm/ui/AddCommentForm/AddCommentForm';
 import { Page } from '4_widgets/Page/Page';
 
 import { articleDetailsPageReducer } from '5_p/ArticleDetailsPage/model/slices';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
-import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
-import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/ArticleDetailsCommentsSlice';
-import {
-  articleDetailsPageRecomendationsReducer,
-  getArticleRecomendations
-} from '../../model/slices/articleDetailsPageRecomendationsSlice';
-import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import cls from './ArticleDetailsPage.module.scss';
 // ----- imports -----
 
 interface ArticleDetailsPageProps {
@@ -43,13 +38,10 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   const comments = useSelector(getArticleComments.selectAll);
-  const recommendations = useSelector(getArticleRecomendations.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-  const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
-    dispatch(fetchArticleRecommendations());
   });
 
   const onSendComment = useCallback(
@@ -69,13 +61,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <VStack gap="16" max>
           <ArticleDetailsPageHeader />
           <ArticleDetails id={id} />
-          <Text size={TextSize.L} className={cls.commentTitle} title={t('recommend')} />
-          <ArticleList
-            articles={recommendations}
-            isLoading={recommendationsIsLoading}
-            className={cls.recommendations}
-            target="_blank"
-          />
+          <ArticleRecommendationsList />
           <Text size={TextSize.L} className={cls.commentTitle} title={t('comments')} />
           <AddCommentForm onSendComment={onSendComment} />
           <CommentList isLoading={commentsIsLoading} comments={comments} />
