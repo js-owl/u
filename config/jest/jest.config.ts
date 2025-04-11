@@ -11,16 +11,7 @@ export default {
   testEnvironment: 'jsdom',
   coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
   moduleDirectories: ['node_modules'],
-  moduleFileExtensions: [
-    'js',
-    'mjs',
-    'cjs',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node'
-  ],
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node'],
   rootDir: '../../',
   testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
   modulePaths: ['<rootDir>src'],
@@ -28,7 +19,14 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
     '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
-  }
+  },
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      { publicPath: '<rootDir>/reports/unit', filename: 'report.html', openReport: true, inlineSource: true }
+    ]
+  ]
 
   // All imported modules in your tests should be mocked automatically
   // automock: false,
