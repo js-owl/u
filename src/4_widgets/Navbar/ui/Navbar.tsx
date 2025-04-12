@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +10,7 @@ import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
 import { Dropdown } from '1_shared/ui/Dropdown/Dropdown';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
 
-import { getUserAuthData, userActions } from '2_entities/User';
+import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
 import { LoginModal } from '3_features/AuthByUsername';
 import cls from './Navbar.module.scss';
 
@@ -21,9 +20,12 @@ interface NavbarProps {
 
 export const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(getUserAuthData);
-  const dispatch = useDispatch();
+  const isAdmin = useSelector(isUserAdmin);
+  const isManager = useSelector(isUserManager);
+
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
   }, []);
@@ -33,6 +35,8 @@ export const Navbar = ({ className }: NavbarProps) => {
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
+
+  const isAdminPanelAvailable = isAdmin || isManager;
 
   if (authData) {
     return (
@@ -45,6 +49,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           direction="bottom left"
           className={cls.dropdown}
           items={[
+            ...(isAdminPanelAvailable ? [{ content: t('admin'), href: RoutePath.admin_panel }] : []),
             { content: t('profile'), href: RoutePath.profile + authData.id },
             { content: t('logout'), onClick: onLogout }
           ]}
