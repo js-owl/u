@@ -11,14 +11,10 @@ import { Card } from '1_shared/ui/Card/Card';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
 import { Button } from '1_shared/ui/Button/Button';
 
-import cls from './ArticleListItem.module.scss';
-import {
-  Article,
-  ArticleBlockType,
-  ArticleTextBlock,
-  ArticleView
-} from '../../model/types/article';
+import { ArticleBlockType, ArticleView } from '../../model/const/consts';
+import { Article, ArticleTextBlock } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import cls from './ArticleListItem.module.scss';
 // ----- imports -----
 
 interface ArticleListItemProps {
@@ -29,9 +25,7 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-  const {
-    className, article, view, target
-  } = props;
+  const { className, article, view, target } = props;
   const { t } = useTranslation();
   const types = <Text text={article.type.join(', ')} className={cls.types} />;
   const views = (
@@ -42,14 +36,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
   );
 
   if (view === ArticleView.BIG) {
-    const textBlock = article.blocks.find(
-      (block) => block.type === ArticleBlockType.TEXT
-    ) as ArticleTextBlock;
+    const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
 
     return (
-      <div
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
-      >
+      <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
         <Card className={cls.card}>
           <div className={cls.header}>
             <Avatar size={30} src={article.user.avatar} />
@@ -59,17 +49,9 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
           <Text title={article.title} className={cls.title} />
           {types}
           <img src={article.img} className={cls.img} alt={article.title} />
-          {textBlock && (
-            <ArticleTextBlockComponent
-              block={textBlock}
-              className={cls.textBlock}
-            />
-          )}
+          {textBlock && <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />}
           <div className={cls.footer}>
-            <AppLink
-              to={RoutePath.article_details + article.id}
-              target={target}
-            >
+            <AppLink to={RoutePath.article_details + article.id} target={target}>
               <Button>{t('read more')}</Button>
             </AppLink>
             {views}
