@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import '1_shared/config/i18n/i18n';
 import { ErrorBoundary } from '7_app/providers/ErrorBoundary';
@@ -8,7 +8,12 @@ import App from './7_app/App';
 import '7_app/s/index.scss';
 
 console.log('|-index');
-render(
+const container = document.getElementById('root');
+if (!container) {
+  throw new Error('index error');
+}
+const root = createRoot(container);
+root.render(
   <BrowserRouter>
     <StoreProvider>
       <ErrorBoundary>
@@ -17,6 +22,5 @@ render(
         </ThemeProvider>
       </ErrorBoundary>
     </StoreProvider>
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
 );
