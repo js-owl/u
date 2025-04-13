@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, Suspense, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -6,6 +6,7 @@ import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitia
 import { classNames } from '1_shared/libs/classNames/classNames';
 import { VStack } from '1_shared/ui/Stack';
 import { Text, TextSize } from '1_shared/ui/Text/Text';
+import { Loader } from '1_shared/ui/Loader/Loader';
 import { CommentList } from '2_entities/Comment';
 import { AddCommentForm } from '3_features/addCommentForm';
 
@@ -40,7 +41,9 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
   return (
     <VStack gap="16" max className={classNames('', {}, [className])}>
       <Text size={TextSize.L} title={t('comments')} />
-      <AddCommentForm onSendComment={onSendComment} />
+      <Suspense fallback={<Loader />}>
+        <AddCommentForm onSendComment={onSendComment} />
+      </Suspense>
       <CommentList isLoading={commentsIsLoading} comments={comments} />
     </VStack>
   );
