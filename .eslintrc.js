@@ -55,7 +55,8 @@ module.exports = {
     'object-curly-newline': 'off',
     'operator-linebreak': 'off',
     'implicit-arrow-linebreak': 'off',
-    'react/jsx-one-expression-per-line': 'off'
+    'react/jsx-one-expression-per-line': 'off',
+    'func-names': 'off'
   },
   globals: {
     __IS_DEV__: true,
