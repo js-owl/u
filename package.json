@@ -75,6 +75,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sowl-plugin": "^0.0.3",
     "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
