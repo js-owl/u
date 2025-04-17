@@ -7,13 +7,12 @@ import { classNames } from '1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
 import { Text, TextTheme } from '1_shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
-import { Dropdown } from '1_shared/ui/Popups/components/Dropdown/Dropdown';
-import { Avatar } from '1_shared/ui/Avatar/Avatar';
 import { HStack } from '1_shared/ui/Stack';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
 import { LoginModal } from '3_features/AuthByUsername';
 import { NotificationButton } from '3_features/notificationButton';
+import { AvatarDropdown } from '3_features/avatarDropdown';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -25,8 +24,6 @@ export const Navbar = ({ className }: NavbarProps) => {
   const dispatch = useDispatch();
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(getUserAuthData);
-  const isAdmin = useSelector(isUserAdmin);
-  const isManager = useSelector(isUserManager);
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -34,11 +31,6 @@ export const Navbar = ({ className }: NavbarProps) => {
   const onShowModal = useCallback(() => {
     setIsAuthModal(true);
   }, []);
-  const onLogout = useCallback(() => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
-
-  const isAdminPanelAvailable = isAdmin || isManager;
 
   if (authData) {
     return (
@@ -49,15 +41,7 @@ export const Navbar = ({ className }: NavbarProps) => {
         </AppLink>
         <HStack gap="16" className={cls.actions}>
           <NotificationButton />
-          <Dropdown
-            direction="bottom left"
-            items={[
-              ...(isAdminPanelAvailable ? [{ content: t('admin'), href: RoutePath.admin_panel }] : []),
-              { content: t('profile'), href: RoutePath.profile + authData.id },
-              { content: t('logout'), onClick: onLogout }
-            ]}
-            trigger={<Avatar size={30} src={authData.avatar} />}
-          />{' '}
+          <AvatarDropdown />
         </HStack>
       </header>
     );
