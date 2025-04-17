@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import NotificationIcon from '1_shared/assets/icons/notification-20-20.svg';
 import { RoutePath } from '1_shared/config/routeConfig/routeConfig';
 import { classNames } from '1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
@@ -9,6 +10,8 @@ import { Text, TextTheme } from '1_shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
 import { Dropdown } from '1_shared/ui/Dropdown/Dropdown';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
+import { HStack } from '1_shared/ui/Stack';
+import { Icon } from '1_shared/ui/Icon/Icon';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
 import { LoginModal } from '3_features/AuthByUsername';
@@ -45,16 +48,20 @@ export const Navbar = ({ className }: NavbarProps) => {
         <AppLink to={RoutePath.article_create} theme={AppLinkTheme.SECONDARY} className={cls.createBtn}>
           {t('create article')}
         </AppLink>
-        <Dropdown
-          direction="bottom left"
-          className={cls.dropdown}
-          items={[
-            ...(isAdminPanelAvailable ? [{ content: t('admin'), href: RoutePath.admin_panel }] : []),
-            { content: t('profile'), href: RoutePath.profile + authData.id },
-            { content: t('logout'), onClick: onLogout }
-          ]}
-          trigger={<Avatar size={30} src={authData.avatar} />}
-        />
+        <HStack gap="16" className={cls.actions}>
+          <Button theme={ButtonTheme.CLEAR}>
+            <Icon Svg={NotificationIcon} inverted />
+          </Button>
+          <Dropdown
+            direction="bottom left"
+            items={[
+              ...(isAdminPanelAvailable ? [{ content: t('admin'), href: RoutePath.admin_panel }] : []),
+              { content: t('profile'), href: RoutePath.profile + authData.id },
+              { content: t('logout'), onClick: onLogout }
+            ]}
+            trigger={<Avatar size={30} src={authData.avatar} />}
+          />{' '}
+        </HStack>
       </header>
     );
   }
