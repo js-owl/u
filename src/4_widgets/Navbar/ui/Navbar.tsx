@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import NotificationIcon from '1_shared/assets/icons/notification-20-20.svg';
 import { RoutePath } from '1_shared/config/routeConfig/routeConfig';
 import { classNames } from '1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
@@ -11,12 +10,10 @@ import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
 import { Dropdown } from '1_shared/ui/Popups/components/Dropdown/Dropdown';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
 import { HStack } from '1_shared/ui/Stack';
-import { Icon } from '1_shared/ui/Icon/Icon';
-import { Popover } from '1_shared/ui/Popups';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
-import { NotificationList } from '2_entities/Notification';
 import { LoginModal } from '3_features/AuthByUsername';
+import { NotificationButton } from '3_features/notificationButton';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -51,16 +48,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           {t('create article')}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
-          <Popover
-            direction="bottom left"
-            trigger={
-              <Button theme={ButtonTheme.CLEAR}>
-                <Icon Svg={NotificationIcon} inverted />
-              </Button>
-            }
-          >
-            <NotificationList className={cls.notifications} />
-          </Popover>
+          <NotificationButton />
           <Dropdown
             direction="bottom left"
             items={[
