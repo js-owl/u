@@ -12,6 +12,7 @@ import { Dropdown } from '1_shared/ui/Popups/components/Dropdown/Dropdown';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
 import { HStack } from '1_shared/ui/Stack';
 import { Icon } from '1_shared/ui/Icon/Icon';
+import { Popover } from '1_shared/ui/Popups';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
 import { LoginModal } from '3_features/AuthByUsername';
@@ -49,9 +50,17 @@ export const Navbar = ({ className }: NavbarProps) => {
           {t('create article')}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
-          <Button theme={ButtonTheme.CLEAR}>
-            <Icon Svg={NotificationIcon} inverted />
-          </Button>
+          <Popover
+            direction="bottom left"
+            trigger={
+              <Button theme={ButtonTheme.CLEAR}>
+                <Icon Svg={NotificationIcon} inverted />
+              </Button>
+            }
+            // eslint-disable-next-line i18next/no-literal-string
+          >
+            text
+          </Popover>
           <Dropdown
             direction="bottom left"
             items={[

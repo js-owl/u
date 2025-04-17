@@ -56,7 +56,8 @@ module.exports = {
     'operator-linebreak': 'off',
     'implicit-arrow-linebreak': 'off',
     'react/jsx-one-expression-per-line': 'off',
-    'func-names': 'off'
+    'func-names': 'off',
+    'react/jsx-wrap-multilines': 'off'
   },
   globals: {
     __IS_DEV__: true,
