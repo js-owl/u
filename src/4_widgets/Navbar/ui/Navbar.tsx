@@ -15,6 +15,7 @@ import { Icon } from '1_shared/ui/Icon/Icon';
 import { Popover } from '1_shared/ui/Popups';
 
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '2_entities/User';
+import { NotificationList } from '2_entities/Notification';
 import { LoginModal } from '3_features/AuthByUsername';
 import cls from './Navbar.module.scss';
 
@@ -57,9 +58,8 @@ export const Navbar = ({ className }: NavbarProps) => {
                 <Icon Svg={NotificationIcon} inverted />
               </Button>
             }
-            // eslint-disable-next-line i18next/no-literal-string
           >
-            text
+            <NotificationList className={cls.notifications} />
           </Popover>
           <Dropdown
             direction="bottom left"
