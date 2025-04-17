@@ -8,7 +8,7 @@ import { classNames } from '1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
 import { Text, TextTheme } from '1_shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from '1_shared/ui/AppLink/AppLink';
-import { Dropdown } from '1_shared/ui/Dropdown/Dropdown';
+import { Dropdown } from '1_shared/ui/Popups/components/Dropdown/Dropdown';
 import { Avatar } from '1_shared/ui/Avatar/Avatar';
 import { HStack } from '1_shared/ui/Stack';
 import { Icon } from '1_shared/ui/Icon/Icon';
