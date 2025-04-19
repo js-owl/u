@@ -16,7 +16,7 @@ const getAsyncAnimationModules = async () => {
 };
 
 export const useAnimationLibs = () => {
-  return useContext(AnimationContext);
+  return useContext(AnimationContext) as Required<AnimationContextPayload>;
 };
 
 export const AnimationProvider = ({ children }: { children: ReactNode }) => {
