@@ -11,7 +11,7 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "baseUrl": ".",
-    "paths": { "*": ["./src/*"] },
+    "paths": { "@/*": ["./src/*"] },
     "strict": true
   },
   "ts-node": { "compilerOptions": { "module": "CommonJS" } },
