@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
-import { classNames } from '1_shared/libs/classNames/classNames';
+import { Button, ButtonTheme } from '@/1_shared/ui/Button/Button';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
 import cls from './LangSwithcher.module.scss';
 
 interface LangSwithcherProps {

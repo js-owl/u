@@ -2,11 +2,11 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { Button, ButtonTheme } from '1_shared/ui/Button/Button';
-import { Text } from '1_shared/ui/Text/Text';
-import { HStack } from '1_shared/ui/Stack/HStack/HStack';
-import { getUserAuthData } from '2_entities/User';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { Button, ButtonTheme } from '@/1_shared/ui/Button/Button';
+import { Text } from '@/1_shared/ui/Text/Text';
+import { HStack } from '@/1_shared/ui/Stack/HStack/HStack';
+import { getUserAuthData } from '@/2_entities/User';
 
 import { profileActions } from '../../model/slice/profileSlice';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';

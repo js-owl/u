@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { Select } from '1_shared/ui/Select/Select';
-import { ListBox } from '1_shared/ui/Popups/components/ListBox/ListBox';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { Select } from '@/1_shared/ui/Select/Select';
+import { ListBox } from '@/1_shared/ui/Popups/components/ListBox/ListBox';
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {

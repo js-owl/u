@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ThemeDecorator } from '1_shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '7_app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/1_shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/7_app/providers/ThemeProvider';
 import { Sidebar } from './Sidebar';
 
 export default {

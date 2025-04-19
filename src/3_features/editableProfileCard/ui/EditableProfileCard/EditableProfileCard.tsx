@@ -3,16 +3,16 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
-import { VStack } from '1_shared/ui/Stack';
-import { Text, TextTheme } from '1_shared/ui/Text/Text';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { DynamicModuleLoader, ReducersList } from '@/1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/1_shared/libs/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from '@/1_shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { VStack } from '@/1_shared/ui/Stack';
+import { Text, TextTheme } from '@/1_shared/ui/Text/Text';
 
-import { Currency } from '2_entities/Currency';
-import { Country } from '2_entities/Country';
-import { ProfileCard } from '2_entities/Profile';
+import { Currency } from '@/2_entities/Currency';
+import { Country } from '@/2_entities/Country';
+import { ProfileCard } from '@/2_entities/Profile';
 
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';

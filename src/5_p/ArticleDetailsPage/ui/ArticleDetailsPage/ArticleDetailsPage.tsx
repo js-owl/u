@@ -2,13 +2,13 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '1_shared/ui/Stack';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { DynamicModuleLoader, ReducersList } from '@/1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
+import { VStack } from '@/1_shared/ui/Stack';
 
-import { ArticleDetails } from '2_entities/Article';
-import { ArticleRecommendationsList } from '3_features/articleRecommendationsList';
-import { Page } from '4_widgets/Page/Page';
+import { ArticleDetails } from '@/2_entities/Article';
+import { ArticleRecommendationsList } from '@/3_features/articleRecommendationsList';
+import { Page } from '@/4_widgets/Page/Page';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';

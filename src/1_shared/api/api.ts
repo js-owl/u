@@ -1,4 +1,4 @@
-import { USER_LOCALSTORAGE_KEY } from '1_shared/const/localStorage';
+import { USER_LOCALSTORAGE_KEY } from '@/1_shared/const/localStorage';
 import axios from 'axios';
 
 console.log('|-api', { __API__ });

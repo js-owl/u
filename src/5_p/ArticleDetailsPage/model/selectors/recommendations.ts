@@ -1,4 +1,4 @@
-import { StateSchema } from '7_app/providers/StoreProvider';
+import { StateSchema } from '@/7_app/providers/StoreProvider';
 
 export const getArticleRecommendationsIsLoading = (state: StateSchema) =>
   // eslint-disable-next-line

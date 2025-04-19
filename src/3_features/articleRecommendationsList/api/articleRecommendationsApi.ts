@@ -1,5 +1,5 @@
-import { rtkApi } from '1_shared/api/rtkApi';
-import { Article } from '2_entities/Article';
+import { rtkApi } from '@/1_shared/api/rtkApi';
+import { Article } from '@/2_entities/Article';
 
 const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({

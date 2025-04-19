@@ -4,7 +4,7 @@
 // };
 // export default NotFoundPage;
 
-import { classNames } from '1_shared/libs/classNames/classNames';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import cls from './NotFoundPage.module.scss';
 

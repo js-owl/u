@@ -2,16 +2,16 @@ import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch } from '1_shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { Card } from '1_shared/ui/Card/Card';
-import { Input } from '1_shared/ui/Input/Input';
-import { SortOrder } from '1_shared/types';
-import { useDebounce } from '1_shared/libs/hooks/useDebounce/useDebounce';
+import { useAppDispatch } from '@/1_shared/libs/hooks/useAppDispatch/useAppDispatch';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { Card } from '@/1_shared/ui/Card/Card';
+import { Input } from '@/1_shared/ui/Input/Input';
+import { SortOrder } from '@/1_shared/types';
+import { useDebounce } from '@/1_shared/libs/hooks/useDebounce/useDebounce';
 
-import { ArticleSortField, ArticleTypeTabs, ArticleView, ArticleViewSelector } from '2_entities/Article';
-import { ArticleSortSelector } from '2_entities/Article/ui/ArticleSortSelector/ArticleSortSelector';
-import { ArticleType } from '2_entities/Article/model/const/consts';
+import { ArticleSortField, ArticleTypeTabs, ArticleView, ArticleViewSelector } from '@/2_entities/Article';
+import { ArticleSortSelector } from '@/2_entities/Article/ui/ArticleSortSelector/ArticleSortSelector';
+import { ArticleType } from '@/2_entities/Article/model/const/consts';
 
 import {
   getArticlesPageOrder,

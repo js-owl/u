@@ -2,13 +2,13 @@ import { memo, Suspense, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { useInitialEffect } from '1_shared/libs/hooks/useInitialEffect/useInitialEffect';
-import { classNames } from '1_shared/libs/classNames/classNames';
-import { VStack } from '1_shared/ui/Stack';
-import { Text, TextSize } from '1_shared/ui/Text/Text';
-import { Loader } from '1_shared/ui/Loader/Loader';
-import { CommentList } from '2_entities/Comment';
-import { AddCommentForm } from '3_features/addCommentForm';
+import { useInitialEffect } from '@/1_shared/libs/hooks/useInitialEffect/useInitialEffect';
+import { classNames } from '@/1_shared/libs/classNames/classNames';
+import { VStack } from '@/1_shared/ui/Stack';
+import { Text, TextSize } from '@/1_shared/ui/Text/Text';
+import { Loader } from '@/1_shared/ui/Loader/Loader';
+import { CommentList } from '@/2_entities/Comment';
+import { AddCommentForm } from '@/3_features/addCommentForm';
 
 import { getArticleComments } from '../../model/slices/ArticleDetailsCommentsSlice';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
