@@ -4,8 +4,8 @@ import '@/1_shared/config/i18n/i18n';
 import { ErrorBoundary } from '@/7_app/providers/ErrorBoundary';
 import { ThemeProvider } from '@/7_app/providers/ThemeProvider';
 import { StoreProvider } from '@/7_app/providers/StoreProvider';
-import App from './7_app/App';
 import '@/7_app/s/index.scss';
+import App from './7_app/App';
 
 console.log('|-index');
 const container = document.getElementById('root');
