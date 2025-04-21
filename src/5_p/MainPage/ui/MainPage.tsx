@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
+import { StarRating } from '@/1_shared/ui/StarRating/StarRating';
 import { Page } from '@/4_widgets/Page/Page';
-import { Counter } from '@/2_entities/Counter';
-import { HStack } from '@/1_shared/ui/Stack';
-import { ListBox } from '@/1_shared/ui/Popups/components/ListBox/ListBox';
 
 console.log('|-MainPage');
 const MainPage = () => {
@@ -10,7 +8,7 @@ const MainPage = () => {
   return (
     <Page>
       {t('main page')}
-      <Counter />
+      <StarRating />
     </Page>
   );
 };
