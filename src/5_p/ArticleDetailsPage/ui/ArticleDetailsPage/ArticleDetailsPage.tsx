@@ -7,6 +7,7 @@ import { DynamicModuleLoader, ReducersList } from '@/1_shared/libs/c/DynamicModu
 import { VStack } from '@/1_shared/ui/Stack';
 
 import { ArticleDetails } from '@/2_entities/Article';
+import { ArticleRating } from '@/3_features/articleRating';
 import { ArticleRecommendationsList } from '@/3_features/articleRecommendationsList';
 import { Page } from '@/4_widgets/Page/Page';
 
@@ -38,6 +39,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <VStack gap="16" max>
           <ArticleDetailsPageHeader />
           <ArticleDetails id={id} />
+          <ArticleRating articleId={id} />
           <ArticleRecommendationsList />
           <ArticleDetailsComments id={id} />
         </VStack>
