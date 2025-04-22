@@ -8,13 +8,13 @@ export enum ButtonTheme {
   OUTLINE = 'outline',
   OUTLINE_RED = 'outline_red',
   BACKGROUND = 'background',
-  BACKGROUND_INVERTED = 'backgroundInverted',
+  BACKGROUND_INVERTED = 'backgroundInverted'
 }
 
 export enum ButtonSize {
   M = 'size_m',
   L = 'size_l',
-  XL = 'size_xl',
+  XL = 'size_xl'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,6 +23,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   square?: boolean;
   size?: ButtonSize;
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -33,6 +34,7 @@ export const Button: FC<ButtonProps> = (props) => {
     square,
     disabled,
     size = ButtonSize.M,
+    fullWidth,
     ...otherProps
   } = props;
 
@@ -40,15 +42,11 @@ export const Button: FC<ButtonProps> = (props) => {
     [cls[theme]]: true,
     [cls.square]: square,
     [cls[size]]: true,
-    [cls.disabled]: disabled
+    [cls.disabled]: disabled,
+    [cls.fullWidth]: fullWidth
   };
   return (
-    <button
-      type="button"
-      className={classNames(cls.Button, mods, [className])}
-      disabled={disabled}
-      {...otherProps}
-    >
+    <button type="button" className={classNames(cls.Button, mods, [className])} disabled={disabled} {...otherProps}>
       {children}
     </button>
   );

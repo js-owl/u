@@ -1,14 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { StarRating } from '@/1_shared/ui/StarRating/StarRating';
 import { Page } from '@/4_widgets/Page/Page';
+import { RatingCard } from '@/2_entities/Rating';
 
-console.log('|-MainPage');
 const MainPage = () => {
   const { t } = useTranslation();
   return (
     <Page>
       {t('main page')}
-      <StarRating />
+      <RatingCard title={t('Как Вам статья?')} feedbackTitle={t('Оставьте отзыв о статье')} hasFeedback />
     </Page>
   );
 };
