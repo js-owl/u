@@ -6,12 +6,12 @@ import { getUserAuthData } from '@/2_entities/User';
 import { RatingCard } from '@/2_entities/Rating';
 import { useGetArticleRating, useRateArticle } from '../../api/articleRatingApi';
 
-interface ArticleRatingProps {
+export interface ArticleRatingProps {
   className?: string;
   articleId: string;
 }
 
-export const ArticleRating = memo((props: ArticleRatingProps) => {
+const ArticleRating = memo((props: ArticleRatingProps) => {
   const { className, articleId } = props;
   const { t } = useTranslation();
   const userData = useSelector(getUserAuthData);
@@ -58,3 +58,4 @@ export const ArticleRating = memo((props: ArticleRatingProps) => {
     />
   );
 });
+export default ArticleRating;
