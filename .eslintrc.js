@@ -31,7 +31,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     quotes: [2, 'single', { avoidEscape: true }],
     'comma-dangle': ['error', 'never'],
-    'sowl-plugin/path-checker': 'error',
+    'sowl-plugin/path-checker': ['error', { alias: '@' }],
     'linebreak-style': ['error', 'windows'],
 
     'import/no-unresolved': 'off',
