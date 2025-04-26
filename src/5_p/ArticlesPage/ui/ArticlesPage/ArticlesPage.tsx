@@ -5,7 +5,7 @@ import { classNames } from '@/1_shared/libs/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from '@/1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
 import { useInitialEffect } from '@/1_shared/libs/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/1_shared/libs/hooks/useAppDispatch/useAppDispatch';
-import { Page } from '@/4_widgets/Page/Page';
+import { Page } from '@/4_widgets/Page';
 
 import { articlesPageReducer } from '../../model/slices/articlePageSlice';
 import { initArticlesPage } from '../../model/serviices/initArticlesPage/initArticlesPage';

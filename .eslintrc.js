@@ -32,6 +32,7 @@ module.exports = {
     quotes: [2, 'single', { avoidEscape: true }],
     'comma-dangle': ['error', 'never'],
     'sowl-plugin/path-checker': ['error', { alias: '@' }],
+    'sowl-plugin/public-api-imports': ['error', { alias: '@' }],
     'linebreak-style': ['error', 'windows'],
 
     'import/no-unresolved': 'off',

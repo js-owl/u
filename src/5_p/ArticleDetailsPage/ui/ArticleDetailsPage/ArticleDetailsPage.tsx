@@ -9,7 +9,7 @@ import { VStack } from '@/1_shared/ui/Stack';
 import { ArticleDetails } from '@/2_entities/Article';
 import { ArticleRating } from '@/3_features/articleRating';
 import { ArticleRecommendationsList } from '@/3_features/articleRecommendationsList';
-import { Page } from '@/4_widgets/Page/Page';
+import { Page } from '@/4_widgets/Page';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
