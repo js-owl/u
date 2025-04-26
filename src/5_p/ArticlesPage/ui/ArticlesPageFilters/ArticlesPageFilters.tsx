@@ -9,9 +9,14 @@ import { Input } from '@/1_shared/ui/Input/Input';
 import { SortOrder } from '@/1_shared/types';
 import { useDebounce } from '@/1_shared/libs/hooks/useDebounce/useDebounce';
 
-import { ArticleSortField, ArticleTypeTabs, ArticleView, ArticleViewSelector } from '@/2_entities/Article';
-import { ArticleSortSelector } from '@/2_entities/Article/ui/ArticleSortSelector/ArticleSortSelector';
-import { ArticleType } from '@/2_entities/Article/model/const/consts';
+import {
+  ArticleSortField,
+  ArticleTypeTabs,
+  ArticleView,
+  ArticleViewSelector,
+  ArticleSortSelector,
+  ArticleType
+} from '@/2_entities/Article';
 
 import {
   getArticlesPageOrder,
