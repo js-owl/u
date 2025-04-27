@@ -1,12 +1,11 @@
 import { memo } from 'react';
-
-import { RoutePath } from '@/1_shared/config/routeConfig/routeConfig';
 import { classNames } from '@/1_shared/libs/classNames/classNames';
 import { Avatar } from '@/1_shared/ui/Avatar/Avatar';
 import { Text } from '@/1_shared/ui/Text/Text';
 import { Skeleton } from '@/1_shared/ui/Skeleton/Skeleton';
 import { AppLink } from '@/1_shared/ui/AppLink/AppLink';
 import { VStack } from '@/1_shared/ui/Stack';
+import { RoutePath } from '@/7_app/providers/router/config/routeConfig';
 
 import { Comment } from '../../model/types/comment';
 import cls from './CommentCard.module.scss';

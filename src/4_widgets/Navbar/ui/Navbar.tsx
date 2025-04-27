@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { RoutePath } from '@/1_shared/config/routeConfig/routeConfig';
 import { classNames } from '@/1_shared/libs/classNames/classNames';
 import { Button, ButtonTheme } from '@/1_shared/ui/Button/Button';
 import { Text, TextTheme } from '@/1_shared/ui/Text/Text';
@@ -13,6 +12,7 @@ import { getUserAuthData } from '@/2_entities/User';
 import { LoginModal } from '@/3_features/AuthByUsername';
 import { NotificationButton } from '@/3_features/notificationButton';
 import { AvatarDropdown } from '@/3_features/avatarDropdown';
+import { RoutePath } from '@/7_app/providers/router/config/routeConfig';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
