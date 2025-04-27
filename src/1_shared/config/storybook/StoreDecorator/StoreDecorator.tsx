@@ -1,14 +1,9 @@
 import { Story } from '@storybook/react';
 import { ReducersList } from '@/1_shared/libs/c/DynamicModuleLoader/DynamicModuleLoader';
-// eslint-disable-next-line sowl-plugin/public-api-imports
-import { articleDetailsReducer } from '@/2_entities/Article/model/slice/articleDetailsSlice';
-
-// eslint-disable-next-line sowl-plugin/public-api-imports
-import { loginReducer } from '@/3_features/AuthByUsername/model/slice/loginSlice';
-// eslint-disable-next-line sowl-plugin/public-api-imports
-import { profileReducer } from '@/3_features/editableProfileCard/model/slice/profileSlice';
-// eslint-disable-next-line sowl-plugin/public-api-imports
-import { addCommentFormReducer } from '@/3_features/addCommentForm/model/slices/addCommentFormSlice';
+import { articleDetailsReducer } from '@/2_entities/Article/testing';
+import { loginReducer } from '@/3_features/AuthByUsername/testing';
+import { profileReducer } from '@/3_features/editableProfileCard/testing';
+import { addCommentFormReducer } from '@/3_features/addCommentForm/testing';
 import { StateSchema, StoreProvider } from '@/7_app/providers/StoreProvider';
 
 const defaultAsyncReducers: ReducersList = {
