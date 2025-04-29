@@ -1,6 +1,7 @@
-/* eslint-disable implicit-arrow-linebreak */
 import { Story } from '@storybook/react';
-import { Theme, ThemeProvider } from '@/7_app/providers/ThemeProvider';
+import { Theme } from '@/1_shared/const/theme';
+// eslint-disable-next-line sowl-plugin/layer-imports
+import { ThemeProvider } from '@/7_app/providers/ThemeProvider';
 
 export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) =>
   (

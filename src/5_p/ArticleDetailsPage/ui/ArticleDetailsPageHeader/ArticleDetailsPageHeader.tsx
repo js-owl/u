@@ -10,7 +10,7 @@ import { HStack } from '@/1_shared/ui/Stack';
 
 import { getUserAuthData } from '@/2_entities/User';
 import { getArticleDetailsData } from '@/2_entities/Article';
-import { getCanEditArticle } from '@/5_p/ArticleDetailsPage/model/selectors/article';
+import { getCanEditArticle } from '../../model/selectors/article';
 
 interface ArticleDetailsPageHeaderProps {
   className?: string;

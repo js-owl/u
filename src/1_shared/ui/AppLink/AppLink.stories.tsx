@@ -1,7 +1,6 @@
-import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from '@/1_shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/7_app/providers/ThemeProvider';
+import { Theme } from '@/1_shared/const/theme';
 import { AppLink, AppLinkTheme } from './AppLink';
 
 export default {
@@ -15,9 +14,7 @@ export default {
   }
 } as ComponentMeta<typeof AppLink>;
 
-const Template: ComponentStory<typeof AppLink> = (args) => (
-  <AppLink {...args} />
-);
+const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

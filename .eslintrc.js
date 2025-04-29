@@ -36,6 +36,7 @@ module.exports = {
       'error',
       { alias: '@', testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'] }
     ],
+    'sowl-plugin/layer-imports': ['error', { alias: '@', ignoreImportPatterns: ['**/StoreProvider', '**/testing'] }],
     'linebreak-style': ['error', 'windows'],
 
     'import/no-unresolved': 'off',

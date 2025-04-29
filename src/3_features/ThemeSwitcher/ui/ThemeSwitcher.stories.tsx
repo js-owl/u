@@ -2,7 +2,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from '@/1_shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/7_app/providers/ThemeProvider';
+import { useTheme } from '@/1_shared/libs/hooks/useTheme/useTheme';
 import { ThemeSwitcher } from './ThemeSwithcer';
 
 export default {
@@ -13,9 +13,7 @@ export default {
   }
 } as ComponentMeta<typeof ThemeSwitcher>;
 
-const Template: ComponentStory<typeof ThemeSwitcher> = (args) => (
-  <ThemeSwitcher {...args} />
-);
+const Template: ComponentStory<typeof ThemeSwitcher> = (args) => <ThemeSwitcher {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};
